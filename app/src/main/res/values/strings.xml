@@ -32,4 +32,10 @@
 
     <string name="chooseStudent">"समूह से पूछे कौन क्या खेल खेलेगा और खेल के नाम के आगे बच्चे का नाम चुनें"</string>
 
+    <string name="game1">"भूल भुलैय्या"</string>
+    <string name="game2">"वस्तु खोजो "</string>
+    <string name="game3">"चित्र बनाओ"</string>
+    <string name="game4">"जोड़ी बनाओ"</string>
+    <string name="game5">"जोड़ी बनाओ"</string>
+
 </resources>

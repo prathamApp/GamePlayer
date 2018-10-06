@@ -4,6 +4,131 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AssignGame">
+    tools:context=".activities.AssignGame">
 
+    <TextView
+        android:id="@+id/chooseStudent"
+        style="@style/heading"
+        android:text="@string/chooseStudent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/chooseStudent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/game1"
+                style="@style/textViewStyle_main_A"
+                android:text="@string/game1" />
+
+            <android.support.v7.widget.AppCompatSpinner
+                android:id="@+id/game1Spinner"
+                style="@style/textViewStyle_main_A" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/game2"
+                style="@style/textViewStyle_main_A"
+                android:text="@string/game2" />
+
+            <android.support.v7.widget.AppCompatSpinner
+                android:id="@+id/game2Spinner"
+                style="@style/textViewStyle_main_A" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/game3"
+                style="@style/textViewStyle_main_A"
+                android:text="@string/game3" />
+
+            <android.support.v7.widget.AppCompatSpinner
+                android:id="@+id/game3Spinner"
+                style="@style/textViewStyle_main_A" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/game4"
+                style="@style/textViewStyle_main_A"
+                android:text="@string/game4" />
+
+            <android.support.v7.widget.AppCompatSpinner
+                android:id="@+id/game4Spinner"
+                style="@style/textViewStyle_main_A" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/game5"
+                style="@style/textViewStyle_main_A"
+                android:text="@string/game5" />
+
+            <android.support.v7.widget.AppCompatSpinner
+                android:id="@+id/game5Spinner"
+                style="@style/textViewStyle_main_A" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <!--  <android.support.v7.widget.RecyclerView
+          android:id="@+id/recyclerView"
+          android:layout_width="560dp"
+          android:layout_height="100dp"
+          android:layout_marginBottom="8dp"
+          android:layout_marginEnd="8dp"
+          android:layout_marginStart="8dp"
+          android:layout_marginTop="8dp"
+          app:layout_constraintBottom_toTopOf="@+id/button2"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/chooseStudent" />-->
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:text="Button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 </android.support.constraint.ConstraintLayout>

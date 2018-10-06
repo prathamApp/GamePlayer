@@ -1,16 +1,15 @@
-package game_player.pratham.com.gameplayer;
+package game_player.pratham.com.gameplayer.activities;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.os.CountDownTimer;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Toast;
 
+import game_player.pratham.com.gameplayer.R;
 import game_player.pratham.com.gameplayer.fragments.InstructionFragment;
 import game_player.pratham.com.gameplayer.fragments.TimerForGameSelection;
 
@@ -52,7 +51,6 @@ public class ShowInstructions extends AppCompatActivity {
 
     public void assignGames(View view){
         Intent intent=new Intent(this,AssignGame.class);
-
-
+        startActivity(intent);
     }
 }
