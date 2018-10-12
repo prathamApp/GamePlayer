@@ -13,8 +13,9 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_marginStart">8dp</item>
         <item name="android:layout_marginTop">8dp</item>
-        <item name="android:textSize">22sp</item>
+        <item name="android:textSize">30sp</item>
         <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/primary_text</item>
     </style>
 
     <style name="textViewStyle_main_A">
@@ -22,12 +23,22 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_weight">1</item>
         <item name="android:layout_margin">4dp</item>
-        <item name="android:textSize">18sp</item>
+        <item name="android:textSize">22sp</item>
     </style>
     <style name="textStyle_instructionForServey">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_margin">4dp</item>
-        <item name="android:textSize">18sp</item>
+        <item name="android:textSize">22sp</item>
+        <item name="android:textColor">@color/secondary_text</item>
+    </style>
+
+    <style name="background">
+      <!--  <item name="android:background">@color/primary_light</item>-->
+      <item name="android:background">@color/white</item>
+    </style>
+
+    <style name="clock">
+        <item name="android:textSize">35sp</item>
     </style>
 </resources>

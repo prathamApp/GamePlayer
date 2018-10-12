@@ -2,13 +2,13 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    style="@style/background"
     android:layout_margin="8dp">
     <TextView
         android:id="@+id/instructoinForboys"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="18sp"
-        android:layout_margin="14dp"
+       style="@style/textStyle_instructionForServey"
         android:text="@string/decideGame"/>
 
 
@@ -25,11 +25,14 @@
             android:layout_centerInParent="true"
             android:progressDrawable="@drawable/circular_progress_bar"
             android:background="@drawable/circle_shape"/>
+
         <TextView
             android:id="@+id/textTimer"
-            android:layout_centerInParent="true"
+            style="@style/clock"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:fontFamily="@font/numans" />
     </RelativeLayout>
 <Button
     android:id="@+id/ok"
@@ -37,6 +40,7 @@
     android:layout_height="wrap_content"
     android:layout_alignParentBottom="true"
     android:onClick="assignGames"
+    android:background="@drawable/round_button_normal"
     android:enabled="false"
     android:text="ok"/>
 

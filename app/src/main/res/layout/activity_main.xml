@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    style="@style/background"
     tools:context=".activities.MainActivity">
 
     <TextView
@@ -64,7 +65,9 @@
                 style="@style/textViewStyle_main_A"
                 android:text="@string/groupCount" />
 
-            <android.support.v7.widget.AppCompatSpinner style="@style/textViewStyle_main_A" />
+            <android.support.v7.widget.AppCompatSpinner
+                android:id="@+id/groupSpinner"
+                style="@style/textViewStyle_main_A" />
         </LinearLayout>
 
         <LinearLayout
@@ -77,7 +80,9 @@
                 style="@style/textViewStyle_main_A"
                 android:text="@string/studentName" />
 
-            <android.support.v7.widget.AppCompatSpinner style="@style/textViewStyle_main_A" />
+            <android.support.v7.widget.AppCompatSpinner
+                android:id="@+id/studentSpinner"
+                style="@style/textViewStyle_main_A" />
         </LinearLayout>
     </LinearLayout>
 
@@ -89,8 +94,10 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:text="Next"
+        android:enabled="false"
         android:onClick="nextActivity"
+        android:text="Next"
+        android:background="@drawable/round_button_normal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.983"

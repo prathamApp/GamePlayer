@@ -9,6 +9,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
+import java.util.ArrayList;
+
 import game_player.pratham.com.gameplayer.R;
 import game_player.pratham.com.gameplayer.fragments.InstructionFragment;
 import game_player.pratham.com.gameplayer.fragments.TimerForGameSelection;
@@ -16,12 +18,14 @@ import game_player.pratham.com.gameplayer.fragments.TimerForGameSelection;
 public class ShowInstructions extends AppCompatActivity {
     FragmentManager fragmentManager;
     FragmentTransaction fragmentTransaction;
+    ArrayList selectedStudent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_instructions);
-
+        Intent intent=getIntent();
+        selectedStudent= (ArrayList) intent.getSerializableExtra("selectedStudent");
         fragmentManager = getSupportFragmentManager();
         fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.add(R.id.fragment_showInstruction,new InstructionFragment());
@@ -51,6 +55,7 @@ public class ShowInstructions extends AppCompatActivity {
 
     public void assignGames(View view){
         Intent intent=new Intent(this,AssignGame.class);
+        intent.putExtra("selectedStudent",selectedStudent);
         startActivity(intent);
     }
 }

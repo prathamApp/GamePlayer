@@ -31,8 +31,8 @@ public class TimerForGameSelection extends Fragment {
         barTimer=view.findViewById(R.id.barTimer);
         textTimer=view.findViewById(R.id.textTimer);
         ok_btn=view.findViewById(R.id.ok);
-        //startTimer(1);
-        ok_btn.setEnabled(true);
+        startTimer(1);
+       // ok_btn.setEnabled(true);
     }
 
     private void startTimer(final int minuti) {

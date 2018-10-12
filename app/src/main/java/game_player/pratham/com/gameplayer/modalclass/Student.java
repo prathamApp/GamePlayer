@@ -32,7 +32,6 @@ public class Student {
     public String Gender;
 
 
-
     @NonNull
     public String getStudentId() {
         return StudentId;
