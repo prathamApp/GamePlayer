@@ -7,14 +7,17 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import game_player.pratham.com.gameplayer.R;
 import game_player.pratham.com.gameplayer.database.AppDatabase;
+import game_player.pratham.com.gameplayer.modalclass.GamesAssignedStudent;
 import game_player.pratham.com.gameplayer.modalclass.Student;
 import game_player.pratham.com.gameplayer.modalclass.StudentForSpinner;
 
@@ -39,11 +42,17 @@ public class AssignGame extends AppCompatActivity {
     List game2List = new ArrayList();
     List game3List = new ArrayList();
     List game4List = new ArrayList();
-    List game5List = new ArrayList();
+    // List game5List = new ArrayList();
 
+    GamesAssignedStudent gamesAssignedStudent1 = new GamesAssignedStudent();
+    GamesAssignedStudent gamesAssignedStudent2 = new GamesAssignedStudent();
+    GamesAssignedStudent gamesAssignedStudent3 = new GamesAssignedStudent();
+    GamesAssignedStudent gamesAssignedStudent4 = new GamesAssignedStudent();
+    GamesAssignedStudent gamesAssignedStudent5 = new GamesAssignedStudent();
 
     List<StudentForSpinner> selectedStudentList = new ArrayList<>();
-    List<StudentForSpinner> tempList = new ArrayList<>();
+    List<GamesAssignedStudent> selectedStudentWithGame = new ArrayList();
+
     Context context;
     int[] assigned = {100, 100, 100, 100, 100};
 
@@ -83,14 +92,26 @@ public class AssignGame extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int pos, long l) {
                 if (pos > 0) {
+                    gamesAssignedStudent1.setGameName(context.getResources().getString(R.string.game1));
+                    gamesAssignedStudent1.setGameID("1");
+                    gamesAssignedStudent1.setStudName(((StudentForSpinner) adapterView.getSelectedItem()).getStudName());
+                    gamesAssignedStudent1.setStudId(((StudentForSpinner) adapterView.getSelectedItem()).getStudId());
+
+
                     game1List.clear();
                     game1List.addAll(selectedStudentList);
                     game1List.remove(pos);
-                    ArrayAdapter tempAdapter = new ArrayAdapter(context, R.layout.support_simple_spinner_dropdown_item, game1List);
-                    game2Spinner.setAdapter(tempAdapter);
+                    ArrayAdapter game2Adapter = new ArrayAdapter(context, R.layout.support_simple_spinner_dropdown_item, game1List);
+                    game2Spinner.setAdapter(game2Adapter);
                     game2Spinner.setEnabled(true);
 
                 } else {
+
+                    gamesAssignedStudent1.setGameName(null);
+                    gamesAssignedStudent1.setGameID(null);
+                    gamesAssignedStudent1.setStudName(null);
+                    gamesAssignedStudent1.setStudId(null);
+
                     game2Spinner.setSelection(0);
                     game2Spinner.setEnabled(false);
                 }
@@ -101,21 +122,32 @@ public class AssignGame extends AppCompatActivity {
 
             }
         });
-
         game2Spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int pos, long l) {
                 if (pos > 0) {
+                    gamesAssignedStudent2.setGameName(context.getResources().getString(R.string.game2));
+                    gamesAssignedStudent2.setGameID("2");
+                    gamesAssignedStudent2.setStudName(((StudentForSpinner) adapterView.getSelectedItem()).getStudName());
+                    gamesAssignedStudent2.setStudId(((StudentForSpinner) adapterView.getSelectedItem()).getStudId());
+
+
                     game2List.clear();
                     game2List.addAll(game1List);
                     game2List.remove(pos);
-                    ArrayAdapter tempAdapter = new ArrayAdapter(context, R.layout.support_simple_spinner_dropdown_item, game2List);
-                    game3Spinner.setAdapter(tempAdapter);
+                    ArrayAdapter game3Adapter = new ArrayAdapter(context, R.layout.support_simple_spinner_dropdown_item, game2List);
+                    game3Spinner.setAdapter(game3Adapter);
                     game3Spinner.setEnabled(true);
 
                 } else {
                     game3Spinner.setSelection(0);
                     game3Spinner.setEnabled(false);
+
+                    gamesAssignedStudent2.setGameName(null);
+                    gamesAssignedStudent2.setGameID(null);
+                    gamesAssignedStudent2.setStudName(null);
+                    gamesAssignedStudent2.setStudId(null);
+
                 }
             }
 
@@ -124,21 +156,32 @@ public class AssignGame extends AppCompatActivity {
 
             }
         });
-
         game3Spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int pos, long l) {
                 if (pos > 0) {
+
+                    gamesAssignedStudent3.setGameName(context.getResources().getString(R.string.game3));
+                    gamesAssignedStudent3.setGameID("3");
+                    gamesAssignedStudent3.setStudName(((StudentForSpinner) adapterView.getSelectedItem()).getStudName());
+                    gamesAssignedStudent3.setStudId(((StudentForSpinner) adapterView.getSelectedItem()).getStudId());
+
                     game3List.clear();
                     game3List.addAll(game2List);
                     game3List.remove(pos);
-                    ArrayAdapter tempAdapter = new ArrayAdapter(context, R.layout.support_simple_spinner_dropdown_item, game3List);
-                    game4Spinner.setAdapter(tempAdapter);
+                    ArrayAdapter game4Adapter = new ArrayAdapter(context, R.layout.support_simple_spinner_dropdown_item, game3List);
+                    game4Spinner.setAdapter(game4Adapter);
                     game4Spinner.setEnabled(true);
 
                 } else {
                     game4Spinner.setSelection(0);
                     game4Spinner.setEnabled(false);
+
+                    gamesAssignedStudent3.setGameName(null);
+                    gamesAssignedStudent3.setGameID(null);
+                    gamesAssignedStudent3.setStudName(null);
+                    gamesAssignedStudent3.setStudId(null);
+
                 }
             }
 
@@ -151,16 +194,26 @@ public class AssignGame extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int pos, long l) {
                 if (pos > 0) {
+                    gamesAssignedStudent4.setGameName(context.getResources().getString(R.string.game4));
+                    gamesAssignedStudent4.setGameID("4");
+                    gamesAssignedStudent4.setStudName(((StudentForSpinner) adapterView.getSelectedItem()).getStudName());
+                    gamesAssignedStudent4.setStudId(((StudentForSpinner) adapterView.getSelectedItem()).getStudId());
+
                     game4List.clear();
                     game4List.addAll(game3List);
                     game4List.remove(pos);
-                    ArrayAdapter tempAdapter = new ArrayAdapter(context, R.layout.support_simple_spinner_dropdown_item, game4List);
-                    game5Spinner.setAdapter(tempAdapter);
+                    ArrayAdapter game5Adapter = new ArrayAdapter(context, R.layout.support_simple_spinner_dropdown_item, game4List);
+                    game5Spinner.setAdapter(game5Adapter);
                     game5Spinner.setEnabled(true);
 
                 } else {
                     game5Spinner.setSelection(0);
                     game5Spinner.setEnabled(false);
+
+                    gamesAssignedStudent4.setGameName(null);
+                    gamesAssignedStudent4.setGameID(null);
+                    gamesAssignedStudent4.setStudName(null);
+                    gamesAssignedStudent4.setStudId(null);
                 }
             }
 
@@ -172,48 +225,68 @@ public class AssignGame extends AppCompatActivity {
         game5Spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                gamesAssignedStudent5.setGameName(context.getResources().getString(R.string.game5));
+                gamesAssignedStudent5.setGameID("5");
+                gamesAssignedStudent5.setStudName(((StudentForSpinner) adapterView.getSelectedItem()).getStudName());
+                gamesAssignedStudent5.setStudId(((StudentForSpinner) adapterView.getSelectedItem()).getStudId());
 
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
-
+                gamesAssignedStudent5.setGameName(null);
+                gamesAssignedStudent5.setGameID(null);
+                gamesAssignedStudent5.setStudName(null);
+                gamesAssignedStudent5.setStudId(null);
             }
         });
     }
 
-    private void checkList(int[] assigned) {
-        tempList.clear();
-        tempList.addAll(selectedStudentList);
-        for (int i = 0; i < assigned.length; i++) {
-            if (assigned[i] != 100) tempList.remove(assigned[i]);
+    /*  private void checkList(int[] assigned) {
+          tempList.clear();
+          tempList.addAll(selectedStudentList);
+          for (int i = 0; i < assigned.length; i++) {
+              if (assigned[i] != 100) tempList.remove(assigned[i]);
+          }
+      }*/
+    @OnClick(R.id.playGame)
+    public void playGame() {
+
+        /*StudentForSpinner stude1 = (StudentForSpinner) game1Spinner.getSelectedItem();
+        GamesAssignedStudent gamesAssignedStudent1 = new GamesAssignedStudent();
+        gamesAssignedStudent1.setStudId(stude1.getStudId());
+        gamesAssignedStudent1.setStudName(stude1.getStudName());
+        gamesAssignedStudent1.setGameName(getResources().getString(R.string.game1));
+        gamesAssignedStudent1.setGameName("1");
+        selectedStudentWithGame.add(gamesAssignedStudent1*/
+
+        /*StudentForSpinner stude2 = (StudentForSpinner) game2Spinner.getSelectedItem();
+        StudentForSpinner stude3 = (StudentForSpinner) game3Spinner.getSelectedItem();
+        StudentForSpinner stude4 = (StudentForSpinner) game4Spinner.getSelectedItem();
+        StudentForSpinner stude5 = (StudentForSpinner) game5Spinner.getSelectedItem();*/
+        if (gamesAssignedStudent1.getStudId() != null || gamesAssignedStudent2.getStudId() != null || gamesAssignedStudent3.getStudId() != null || gamesAssignedStudent4.getStudId() != null || gamesAssignedStudent5.getStudId() != null) {
+            Toast.makeText(context, "select student for all games", Toast.LENGTH_SHORT).show();
+
+        } else {
+            selectedStudentWithGame.add(gamesAssignedStudent1);
+            selectedStudentWithGame.add(gamesAssignedStudent2);
+            selectedStudentWithGame.add(gamesAssignedStudent3);
+            selectedStudentWithGame.add(gamesAssignedStudent4);
+            selectedStudentWithGame.add(gamesAssignedStudent5);
+
+           /* selectedStudentWithGame.add(stude1);
+            selectedStudentWithGame.add(stude2);
+            selectedStudentWithGame.add(stude3);
+            selectedStudentWithGame.add(stude4);
+            selectedStudentWithGame.add(stude5);*/
+            playGamesOneByOne();
         }
     }
 
+    private void playGamesOneByOne() {
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    }
 
 
 
