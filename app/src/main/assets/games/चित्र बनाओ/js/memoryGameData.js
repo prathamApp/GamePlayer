@@ -1,0 +1,61 @@
+﻿Memorygame.data=
+[
+	{
+			'img':'Animal.png',
+			'name':'Animal',
+			'question':1		
+	},
+	{
+			'img':'Bird_1.png',
+			'name':'Bird_1',
+			'question':2		
+	},
+	{
+			'img':'Bird_2.png',
+			'name':'Bird_2',
+			'question':3		
+	},
+	{
+			'img':'Flower.png',
+			'name':'Flower',
+			'question':4		
+	},
+	{
+			'img':'Food.png',
+			'name':'Food',
+			'question':5		
+	},
+	{
+			'img':'Fruit.png',
+			'name':'Fruit',
+			'question':6		
+	},
+	{
+			'img':'Fruits_1.png',
+			'name':'Fruits_1',
+			'question':7		
+	},
+	{
+			'img':'Vegetables_1.png',
+			'name':'Vegetables_1',
+			'question':8		
+	}
+];
+Memorygame.hardcoredata=
+{
+	'puzzleComplete':'Puzzle Completed!!!',
+	'puzzleIncomplete':'puzzle Incomplete',
+	'gameovertext':'Game Over.',
+	'playButtonText':'PLAY',
+	'instruction':'इस खेल में आपको केवल 5 सेकंड के लिए कुछ चित्र दिखाए जाएंगे| इसके बाद ये चित्र पलट जाएंगे| आपको अपनी याद्दाश्त का इस्तेमाल करते हुए सभी चित्रों की जोड़ी ढूँढनी है|'
+};
+Memorygame.layout=[
+{
+	"noOfImages":16,
+	"gridDivClass":6,
+	"gridDivOffset":3,
+	"innerDivClass":3,
+	"levelchange":8,
+	"duration":4000
+}
+];

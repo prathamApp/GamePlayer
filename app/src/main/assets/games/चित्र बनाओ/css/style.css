@@ -1,0 +1,174 @@
+html{
+	height:100%;
+}
+body
+{
+	user-select:none; 
+	background-position:center;
+	background-attachment:fixed;
+	background-repeat:no-repeat;
+	background-size:100% 100%;
+	overflow:hidden;
+}	
+.se-pre-con {
+	position: fixed;
+	left: 0px;
+	top:150px;
+	width:100%;
+	height: 100px;
+	z-index: 9999;
+	background-repeat: no-repeat;
+	background-position:center;
+}
+.cell
+{
+	background-color:white;
+	border-radius:2vw;
+	border:1px solid black;
+	
+}
+.nopadding
+{
+	padding:0!important;
+}
+.imgcls
+{
+	border-radius:2vw;
+	height:20vh;
+}
+#gamePage
+{
+	margin-top:-2vh;
+}
+#OuterDiv
+{
+	margin-top:-1vh;
+	z-index:100;
+}
+#homeImage
+{
+	visibility:hidden;
+}
+#logoImage
+{
+}
+#playButton
+{
+	padding:0px;
+}
+#homeButton
+{
+	padding:0px;
+}
+#soundDiv
+{
+	margin-top: 72vh;	
+}
+#scoreText
+{
+	font-size:2.5vw;
+	font-weight:bold;
+	margin-top: 1vh;
+}
+#score
+{
+	font-size:3vw;
+	font-weight:bold;
+	margin-top: -2vh;
+}
+#smileeDiv
+{
+	margin-top:-20vh;
+}
+#clockDiv
+{
+	visibility:hidden;
+	margin-top:-1vh;
+}
+#timerSpan,#secondsSpan
+{
+	font-size:4vw;
+	font-weight:bold;	
+}
+#scoreDiv
+{
+	background-color:white;
+	border-radius:50%;
+	height:18vh;
+	visibility:hidden;
+}
+#bottomDiv
+{
+	bottom:0;
+	position:fixed;
+	z-index:100;
+}
+#gameOverText
+{
+	margin-top: 0.5vh;	
+	text-align:center;
+	font-size:6vw;
+	font-weight:bold;	
+}
+#endPage
+{
+	margin-top:2vh;
+	font-size:2.5vw;
+}
+#start
+{
+	font-size:2vw;
+}
+.closed
+{
+		float:right;
+		margin-top:-2vh;
+		color:red;
+		font-size:2.5vw;
+}
+#questionMsg
+{
+	font-size:1.8vw;
+}
+.modal 
+{
+	display: none; /* Hidden by default */
+	position: fixed; /* Stay in place */
+	z-index: 1; /* Sit on top */
+	padding-top: 100px; /* Location of the box */
+	left: 0;
+	top: 0;
+	width: 100%; /* Full width */
+	height: 100%; /* Full height */
+	overflow: auto; 
+	background-color: rgba(0,0,0,0.6); 
+}
+.modal-content
+{
+	background-color:#ffffff !important;	
+}
+#instructionDiv
+{
+   display:none;
+   border: 1px solid black;
+   border-radius: 1vw;
+   font-size: 3vw;
+   font-weight: 500;
+   position: fixed;
+   top: 25vh;
+   box-shadow: -3px 3px 19px rgb(0, 0, 0);
+}
+.fontClass
+{
+	font-family:"Calibri";
+	font-size:2vw;
+	margin-top:1.5%;
+}
+#gameOverText
+{
+	margin-top: 1%;	
+	text-align:center;
+	font-size:4vw;
+	font-weight:bold;	
+}
+

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <title>MemoryGame</title>
+ <meta charset="utf-8"> 
+	 <link rel="stylesheet" href="css/bootstrap.min.css"></link>
+	<link rel="stylesheet" href="css/animate.css"></link>
+	<link rel="stylesheet" href="css/animations.css"></link>
+	<link rel="stylesheet" type="text/css" href="css/style.css"></link>
+	<link rel="stylesheet" type="text/css" href="css/jquery-ui.css"></link>
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/jquery-ui.min.js"></script>
+    <script src ="js/bootstrap.min.js"></script>
+	<script src="js/jquery.ui.touch-punch.min.js"></script>
+	<script src ="js/utils.js"></script>
+	<script src ="js/memoryGameScript.js"></script>
+	<script src ="js/memoryGameData.js"></script>
+</head>
+<body>
+<div style="background-image:url(css/Preloader_3.gif);" class="se-pre-con col-lg-12 col-md-12 col-xs-12 col-sm-12"></div>
+	<audio id="playSound"></audio>
+		<div id="homeAndLogoDiv" class="nopadding col-xs-12 col-md-12 col-lg-12 col-sm-12">
+			<div id="homeButton" class="nopadding col-xs-1 col-md-1 col-lg-1 col-sm-1">
+				<img class="nopadding img-responsive col-xs-10 col-md-10 col-lg-10 col-sm-10 col-xs-offset-2 col-md-offset-2 col-lg-offset-2 col-sm-offset-2" id="homeImage" onclick="Memorygame.goToHome();">
+			</div>
+			<div id="clockDiv" class="nopadding col-sm-3 col-lg-3 col-md-3 col-xs-3 col-sm-offset-4 col-lg-offset-4 col-md-offset-4 col-xs-offset-4">
+				<img id="clockImage" class="nopadding img-responsive col-sm-2 col-lg-2 col-md-2 col-xs-2">
+				<span id="timerSpan" class="nopadding"></span>
+				<span id="secondsSpan" class="nopadding"></span>
+			</div>
+			<div class="nopadding col-xs-1 col-md-1 col-lg-1 col-sm-1 col-xs-offset-3 col-md-offset-3 col-lg-offset-3 col-sm-offset-3">
+				<img class="nopadding img-responsive col-xs-10 col-md-10 col-lg-10 col-sm-10 col-xs-offset-1 col-md-offset-1 col-lg-offset-1 col-sm-offset-1" id="logoImage" >
+			</div> 
+		</div>
+		<div id="coverPage" class="col-xs-12 col-md-12 col-lg-12 col-sm-12">
+			<div id="instructionDiv" class="col-xs-6 col-md-6 col-lg-6 col-sm-6 col-xs-offset-3 col-md-offset-3 col-lg-offset-3 col-sm-offset-3"></div>
+			<div id="playButton" class="col-xs-1 col-md-1 col-lg-1 col-sm-1 col-xs-offset-5 col-md-offset-5 col-lg-offset-5 col-sm-offset-5" style="position:fixed;bottom:0">
+				<img class="nopadding img-responsive col-xs-12 col-md-12 col-lg-12 col-sm-12 " id="play" onclick="Memorygame.playGame();" style="padding:0px;">
+			</div>
+		</div>
+		<div id="gamePage" class="nopadding col-sm-12 col-md-12 col-lg-12 col-xs-12">
+			<div id="OuterDiv" class="col-sm-12 col-md-12 col-lg-12 col-xs-12">
+			</div>
+			<div id="" class="col-sm-12 col-md-12 col-lg-12 col-xs-12">
+				<div id="smileeDiv" class="col-sm-2 col-md-2 col-lg-2 col-xs-2">
+					<img id="smileeImg" class="nopadding img-responsive col-xs-12 col-md-12 col-lg-12 col-sm-12" style="padding:0px;">
+				</div>
+			</div>
+			<div id="bottomDiv" class="nopadding col-sm-1 col-md-1 col-lg-1 col-xs-1 col-sm-offset-11 col-lg-offset-11 col-md-offset-11 col-xs-offset-11">
+				<div id="nextDiv" class="nopadding col-xs-12 col-md-12 col-lg-12 col-sm-12">
+					<img id="nextButton" class="nopadding col-xs-12 col-md-12 col-lg-12 col-sm-12 img-responsive"  onclick="Memorygame.showEndPage();">
+				</div>
+			</div>
+		</div>
+		<div id="endPage" class="noPadding col-sm-12 col-lg-12 col-md-12 col-xs-12">
+			<div  class="noPadding col-sm-12 col-lg-12 col-md-12 col-xs-12">
+				<div id="puzzleComplete" class="noPadding text-center fontCls col-sm-4 col-lg-4 col-md-4 col-xs-4 col-sm-offset-4 col-lg-offset-4 col-md-offset-4 col-xs-offset-4"></div>
+			</div>
+			<div  class="noPadding col-sm-12 col-lg-12 col-md-12 col-xs-12">
+				<div id="wrong" class="noPadding text-center fontCls col-sm-4 col-lg-4 col-md-4 col-xs-4 col-sm-offset-4 col-lg-offset-4 col-md-offset-4 col-xs-offset-4"></div>
+			</div>
+			<div  class="noPadding col-sm-12 col-lg-12 col-md-12 col-xs-12">
+				<div id="correct" class="noPadding text-center fontCls col-sm-4 col-lg-4 col-md-4 col-xs-4 col-sm-offset-4 col-lg-offset-4 col-md-offset-4 col-xs-offset-4"></div>
+			</div>
+			<div  class="noPadding col-sm-12 col-lg-12 col-md-12 col-xs-12">
+				<div id="time" class="noPadding text-center fontCls col-sm-4 col-lg-4 col-md-4 col-xs-4 col-sm-offset-4 col-lg-offset-4 col-md-offset-4 col-xs-offset-4"></div>
+			</div>
+		</div>
+		<div id="responseBoxDiv" class="modal" >
+			<div id="responseBox" class="modal-content col-lg-6 col-md-6 col-xs-6 col-sm-6 col-lg-offset-3 col-md-offset-3 col-xs-offset-3 col-sm-offset-3">
+				<h2 id="questionMsg" class="text-center"></h2>
+				<div class="nopadding col-sm-12 col-lg-12 col-md-12 col-xs-12" style="margin-bottom:1vh">
+					<!-- <button class="nopadding form-control col-lg-1 col-md-1 col-xs-1 col-sm-1 col-lg-offset-3 col-md-offset-3 col-xs-offset-3 col-sm-offset-3" onclick="memoryGame.startGame();">play</button> -->
+					<button id="start" type="button" class="nopadding btn btn-success col-sm-2 col-md-2 col-lg-2 col-xs-2 col-lg-offset-5 col-md-offset-5 col-xs-offset-5 col-sm-offset-5" onclick="Memorygame.startGame();"></button>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>		

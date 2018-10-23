@@ -1,6 +1,8 @@
 package game_player.pratham.com.gameplayer.modalclass;
 
-public class GamesAssignedStudent {
+import java.io.Serializable;
+
+public class GamesAssignedStudent implements Serializable{
     String studId;
     String studName;
     String gameName;

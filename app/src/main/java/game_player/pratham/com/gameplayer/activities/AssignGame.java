@@ -1,6 +1,7 @@
 package game_player.pratham.com.gameplayer.activities;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -51,10 +52,9 @@ public class AssignGame extends AppCompatActivity {
     GamesAssignedStudent gamesAssignedStudent5 = new GamesAssignedStudent();
 
     List<StudentForSpinner> selectedStudentList = new ArrayList<>();
-    List<GamesAssignedStudent> selectedStudentWithGame = new ArrayList();
+    ArrayList<GamesAssignedStudent> selectedStudentWithGame = new ArrayList();
 
     Context context;
-    int[] assigned = {100, 100, 100, 100, 100};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -265,27 +265,27 @@ public class AssignGame extends AppCompatActivity {
         StudentForSpinner stude4 = (StudentForSpinner) game4Spinner.getSelectedItem();
         StudentForSpinner stude5 = (StudentForSpinner) game5Spinner.getSelectedItem();*/
         if (gamesAssignedStudent1.getStudId() != null || gamesAssignedStudent2.getStudId() != null || gamesAssignedStudent3.getStudId() != null || gamesAssignedStudent4.getStudId() != null || gamesAssignedStudent5.getStudId() != null) {
-            Toast.makeText(context, "select student for all games", Toast.LENGTH_SHORT).show();
-
-        } else {
+            selectedStudentWithGame.clear();
             selectedStudentWithGame.add(gamesAssignedStudent1);
             selectedStudentWithGame.add(gamesAssignedStudent2);
             selectedStudentWithGame.add(gamesAssignedStudent3);
             selectedStudentWithGame.add(gamesAssignedStudent4);
             selectedStudentWithGame.add(gamesAssignedStudent5);
 
+            Intent intent =new Intent(this,WebViewActivity.class);
+            intent.putExtra("listGames",selectedStudentWithGame);
+            startActivity(intent);
+        } else {
+            Toast.makeText(context, "select student for all games", Toast.LENGTH_SHORT).show();
+
+
            /* selectedStudentWithGame.add(stude1);
             selectedStudentWithGame.add(stude2);
             selectedStudentWithGame.add(stude3);
             selectedStudentWithGame.add(stude4);
             selectedStudentWithGame.add(stude5);*/
-            playGamesOneByOne();
+
         }
-    }
-
-    private void playGamesOneByOne() {
-
-
     }
 
 
