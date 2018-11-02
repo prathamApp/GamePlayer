@@ -6,11 +6,9 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.view.Gravity;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.GridLayout;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,47 +17,45 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import game_player.pratham.com.gameplayer.R;
-import game_player.pratham.com.gameplayer.interfaces.StudentListLisner;
-import game_player.pratham.com.gameplayer.modalclass.Student;
+import game_player.pratham.com.gameplayer.interfaces.VillageSelectListener;
+import game_player.pratham.com.gameplayer.modalclass.VillageNameID;
 
-public class SelectStudentDialog extends Dialog {
+public class SelectVillageDialog extends Dialog {
 
     @BindView(R.id.txt_clear_changes_village)
     TextView clear_changes;
     @BindView(R.id.btn_close_village)
     ImageButton btn_close;
-    /*  @BindView(R.id.txt_count_village)
-      TextView txt_count_village;*/
     @BindView(R.id.txt_message_village)
     TextView txt_message_village;
     @BindView(R.id.flowLayout)
     GridLayout flowLayout;
 
     Context context;
-    List<Student> studentList;
+    List<VillageNameID> villageList;
     List<CheckBox> checkBoxes = new ArrayList<>();
-    StudentListLisner studentListLisner;
-int count = 0;
+    VillageSelectListener villageSelectListener;
 
-    public SelectStudentDialog(@NonNull Context context, List tempList) {
+
+    public SelectVillageDialog(@NonNull Context context, List tempList) {
         super(context, android.R.style.Theme_DeviceDefault_NoActionBar_Fullscreen);
-        this.studentList = tempList;
+        this.villageList = tempList;
         this.context = context;
-        this.studentListLisner = (StudentListLisner) context;
+        this.villageSelectListener = (VillageSelectListener) context;
 
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.select_student_dialog);
+        setContentView(R.layout.select_village_dialog);
         ButterKnife.bind(this);
         setCanceledOnTouchOutside(false);
         setCancelable(false);
-        for (int i = 0; i < studentList.size(); i++) {
+        for (int i = 0; i < villageList.size(); i++) {
             CheckBox checkBox = new CheckBox(context);
-            checkBox.setText(studentList.get(i).getFullName());
-            checkBox.setTag(studentList.get(i).getStudentId());
+            checkBox.setText(villageList.get(i).getVillageName());
+            checkBox.setTag(villageList.get(i).getVillageId());
             GridLayout.LayoutParams param = new GridLayout.LayoutParams();
             param.height = GridLayout.LayoutParams.WRAP_CONTENT;
             param.width = GridLayout.LayoutParams.WRAP_CONTENT;
@@ -67,19 +63,6 @@ int count = 0;
             checkBox.setLayoutParams(param);
             flowLayout.addView(checkBox);
             checkBoxes.add(checkBox);
-            checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                @Override
-                public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                    if (count == 5 && b) {
-                        compoundButton.setChecked(false);
-                        Toast.makeText(context, "Limit reached!!!", Toast.LENGTH_SHORT).show();
-                    } else if (b) {
-                        count++;
-                    } else if (!b) {
-                        count--;
-                    }
-                }
-            });
         }
     }
 
@@ -98,13 +81,13 @@ int count = 0;
 
     @OnClick(R.id.txt_ok_village)
     public void ok() {
-        ArrayList studentList = new ArrayList();
+        ArrayList<String> villageIDList = new ArrayList();
         for (int i = 0; i < checkBoxes.size(); i++) {
             if (checkBoxes.get(i).isChecked()) {
-                studentList.add(checkBoxes.get(i).getTag());
+                villageIDList.add(checkBoxes.get(i).getTag().toString());
             }
         }
-        studentListLisner.getSelectedVillage(studentList);
+        villageSelectListener.getSelectedVillage(villageIDList);
         dismiss();
     }
 

@@ -33,12 +33,12 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import game_player.pratham.com.gameplayer.R;
 import game_player.pratham.com.gameplayer.database.AppDatabase;
-import game_player.pratham.com.gameplayer.dialog.SelectStudentDialog;
+import game_player.pratham.com.gameplayer.dialog.SelectVillageDialog;
 import game_player.pratham.com.gameplayer.interfaces.StudentListLisner;
 import game_player.pratham.com.gameplayer.modalclass.Student;
 import game_player.pratham.com.gameplayer.utils.Utility;
 
-public class MainActivity extends AppCompatActivity implements StudentListLisner {
+public class PlayGame extends AppCompatActivity implements StudentListLisner {
     Context context;
     @BindView(R.id.studentSpinner)
     Spinner studentSpinner;
@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity implements StudentListLisner
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-        context = MainActivity.this;
+        context = PlayGame.this;
         int studCount = AppDatabase.getDatabaseInstance(context).getStudentDao().getStudantCount();
         if (studCount <= 0) {
             pullStudents();
@@ -105,7 +105,7 @@ public class MainActivity extends AppCompatActivity implements StudentListLisner
         List studList = AppDatabase.getDatabaseInstance(context).getStudentDao().getAllStudant();
         // ArrayAdapter arrayAdapter=new ArrayAdapter(context,R.layout.support_simple_spinner_dropdown_item,studList);
         // studentSpinner.setAdapter(arrayAdapter);
-        Dialog studentDialog = new SelectStudentDialog(context, studList);
+        Dialog studentDialog = new SelectVillageDialog(context, studList);
         studentDialog.show();
     }
 

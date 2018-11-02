@@ -19,7 +19,7 @@
     <string name="rules">"इस खेल के दो स्तर हैं| पहले स्तर में 5 खेल हैं हमें आपस में चर्चा करके चुनना होगा कि कौन, कौनसा खेल खेलेगा| ये 5 खेल, खेल लेने के बाद हमें 2 खेल समूह में मिलकर खेलने होंगे|"</string>
     <string name="rulesOfGame">"खेल खेलने के नियम –"</string>
     <string name="rule1">"प्रत्येक खेल पार कर लेने पर हमें एक star मिलेगा"</string>
-    <string name="rule2">"जब हम में से कोई एक खेल खेल रहा हो तब हमें उसकी मदद नहीं करनी है| \n खेल खेलते समय हम केवल एक ही बार अपने किसी एक साथी से मदद ले सकते हैं| \n मदद लेने के लिए बज़र दबा दें और खेल उसे खेलने को"</string>
+    <string name="rule2">"जब हम में से कोई एक खेल खेल रहा हो तब हमें उसकी मदद नहीं करनी है| \n खेल खेलते समय हम केवल एक ही बार अपने किसी एक साथी से मदद ले सकते हैं| \n मदद लेने के लिए बज़र दबा दें"</string>
     <string name="rule3">"खेल खेलने के बाद आपसे पूछा जाएगा यदि आप कुछ मज़ेदार जानकारी पढना चाहते हैं या नहीं| आप चाहें तो उन्हें पढ़ सकते हैं या फिर \nपहले 5 खेल में आपको क्या करना होगा इसकी जानकारी के आधार पर आपको तय करना होगा कि कौनसा बच्चा कौन सा खेल खेलेगा|\n
         खेल 1 : इस खेल में आपको एक बिंदु से दुसरे बिंदु तक जाने के लिए भूल भुलैय्या में से रास्ता ढूँढना होगा|\n
         खेल 2 : इस खेल में आपको सूचि में दी गई वस्तुएं दिए गए चित्र में खोजनी होंगी| \n
@@ -39,4 +39,86 @@
     <string name="game4">"जोड़ी बनाओ"</string>
     <string name="game5">"हल करो"</string>
 
+
+
+
+    <string-array name="india_states">
+        <item>SELECT STATE</item>
+        <item>Andhra Pradesh(AP)</item>
+        <item>Arunachal Pradesh(AR)</item>
+        <item>Assam(AS)</item>
+        <item>Bihar(BR)</item>
+        <item>Chhattisgarh(CG)</item>
+        <item>Goa(GA)</item>
+        <item>Gujarat(GJ)</item>
+        <item>Haryana(HR)</item>
+        <item>Himachal Pradesh(HP)</item>
+        <item>Jammu and kashmir(JK)</item>
+        <item>Jharkhand(JH)</item>
+        <item>Karnataka(KA)</item>
+        <item>Kerala(KL)</item>
+        <item>Madhya Pradesh(MP)</item>
+        <item>Maharashtra(MH)</item>
+        <item>Manipur(MN)</item>
+        <item>Meghalaya(ML)</item>
+        <item>Mizoram(MZ)</item>
+        <item>Nagaland(NL)</item>
+        <item>Orissa(OR)</item>
+        <item>Punjab(PB)</item>
+        <item>Rajasthan(RJ)</item>
+        <item>Sikkim(SK)</item>
+        <item>Tamil Nadu(TN)</item>
+        <item>Telangana(TS)</item>
+        <item>Tripura(TR)</item>
+        <item>Uttarakhand(UK)</item>
+        <item>Uttar Pradesh(UP)</item>
+        <item>West Bengal(WB)</item>
+        <item>Andaman and Nicobar Islands(AN)</item>
+        <item>Chandigarh(CH)</item>
+        <item>Dadra and Nagar Haveli(DH)</item>
+        <item>Daman and Diu(DD)</item>
+        <item>Delhi(DL)</item>
+        <item>Lakshadweep(LD)</item>
+        <item>Pondicherry(PY)</item>
+    </string-array>
+
+    <string-array name="india_states_shortcode">
+        <item>SELECT STATE</item>
+        <item>AP</item>
+        <item>AR</item>
+        <item>AS</item>
+        <item>BR</item>
+        <item>CG</item>
+        <item>GA</item>
+        <item>GJ</item>
+        <item>HR</item>
+        <item>HP</item>
+        <item>JK</item>
+        <item>JH</item>
+        <item>KA</item>
+        <item>KL</item>
+        <item>MP</item>
+        <item>MH</item>
+        <item>MN</item>
+        <item>ML</item>
+        <item>MZ</item>
+        <item>NL</item>
+        <item>OR</item>
+        <item>PB</item>
+        <item>RJ</item>
+        <item>SK</item>
+        <item>TN</item>
+        <item>TS</item>
+        <item>TR</item>
+        <item>UK</item>
+        <item>UP</item>
+        <item>WB</item>
+        <item>AN</item>
+        <item>CH</item>
+        <item>DH</item>
+        <item>DD</item>
+        <item>DL</item>
+        <item>LD</item>
+        <item>PY</item>
+    </string-array>
 </resources>

@@ -47,4 +47,9 @@
     <style name="clock">
         <item name="android:textSize">35sp</item>
     </style>
+
+    <style name="spinnerProperties">
+        android:layout_margin="10dp"
+        android:background="@drawable/gradient_spinner"
+    </style>
 </resources>
