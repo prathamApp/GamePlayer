@@ -7,12 +7,12 @@ import android.arch.persistence.room.Query;
 
 import java.util.List;
 
-import game_player.pratham.com.gameplayer.modalclass.Village;
+import game_player.pratham.com.gameplayer.modalclass.Groups;
 
 @Dao
-public interface VillageDao {
+public interface GroupDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    public void insertAllVillages(List<Village> villagesList);
+    public void insertAllGroups(List<Groups> groupsList);
 
     @Query("SELECT DISTINCT Block FROM Village")
     public List<String> getUniqBlockNames();

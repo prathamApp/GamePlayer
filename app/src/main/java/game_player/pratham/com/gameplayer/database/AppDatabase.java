@@ -5,15 +5,18 @@ import android.arch.persistence.room.Room;
 import android.arch.persistence.room.RoomDatabase;
 import android.content.Context;
 
+import game_player.pratham.com.gameplayer.modalclass.Groups;
 import game_player.pratham.com.gameplayer.modalclass.Student;
 import game_player.pratham.com.gameplayer.modalclass.Village;
 
-@Database(entities = {Student.class, Village.class}, version = 1, exportSchema = false)
+@Database(entities = {Student.class, Village.class, Groups.class}, version = 1, exportSchema = false)
 public abstract class AppDatabase extends RoomDatabase {
 
     public abstract StudentDao getStudentDao();
 
     public abstract VillageDao getVillageDao();
+
+    public abstract GroupDao getGroupDao();
 
     private static AppDatabase DATABASEINSTANCE;
 

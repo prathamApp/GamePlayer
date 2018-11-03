@@ -33,6 +33,7 @@ import game_player.pratham.com.gameplayer.R;
 import game_player.pratham.com.gameplayer.database.AppDatabase;
 import game_player.pratham.com.gameplayer.dialog.SelectVillageDialog;
 import game_player.pratham.com.gameplayer.interfaces.VillageSelectListener;
+import game_player.pratham.com.gameplayer.modalclass.Groups;
 import game_player.pratham.com.gameplayer.modalclass.Student;
 import game_player.pratham.com.gameplayer.modalclass.Village;
 import game_player.pratham.com.gameplayer.modalclass.VillageNameID;
@@ -50,8 +51,12 @@ public class DownloadData extends AppCompatActivity implements VillageSelectList
     List<Village> villageList = new ArrayList<>();
     List<Student> studentList = new ArrayList<>();
     int count = 0;
+    int groupCount = 0;
     int totalSelectedVillages = 0;
     ProgressDialog progressDialogStudent;
+
+    List<String> VillageIDList = new ArrayList();
+    List<Groups> groupList = new ArrayList();
 
 
     @Override
@@ -131,8 +136,8 @@ public class DownloadData extends AppCompatActivity implements VillageSelectList
                                     villageName.add(new VillageNameID(village.getVillageId(), village.getVillageName()));
                             }
                             if (!villageName.isEmpty()) {
-                                Dialog studentDialog = new SelectVillageDialog(context, villageName);
-                                studentDialog.show();
+                                Dialog villageDialog = new SelectVillageDialog(context, villageName);
+                                villageDialog.show();
                             }
                         }
                     }
@@ -162,7 +167,9 @@ public class DownloadData extends AppCompatActivity implements VillageSelectList
         progressDialogStudent.setMessage("loadingStudent..");
         progressDialogStudent.setCancelable(false);
         progressDialogStudent.show();
-        totalSelectedVillages = villageIDList.size();
+        VillageIDList.clear();
+        VillageIDList.addAll(villageIDList);
+        //totalSelectedVillages = villageIDList.size();
         for (String id : villageIDList) {
             String url = Utility.getProperty("HLpullStudentURL", context);
             url = url + id;
@@ -184,6 +191,47 @@ public class DownloadData extends AppCompatActivity implements VillageSelectList
                 if (studentListTemp != null) {
                     studentList.addAll(studentListTemp);
                 }
+
+                loadGroups();
+                //dismissDialog();
+            }
+
+            @Override
+            public void onError(ANError error) {
+                studentList.clear();
+                progressDialogStudent.dismiss();
+                Toast.makeText(context, "no Internet available", Toast.LENGTH_SHORT).show();
+                // dismissDialog();
+            }
+        });
+    }
+
+    private void loadGroups() {
+        if (count >= totalSelectedVillages) {
+            groupCount = 0;
+            groupList.clear();
+            for (String id : VillageIDList) {
+                String url = Utility.getProperty("HLpullGroupsURL", context);
+                url = url + id;
+                downloadGroups(url);
+            }
+        }
+    }
+
+    private void downloadGroups(String url) {
+
+        AndroidNetworking.get(url).build().getAsJSONArray(new JSONArrayRequestListener() {
+            @Override
+            public void onResponse(JSONArray response) {
+                groupCount++;
+                String json = response.toString();
+                Gson gson = new Gson();
+                Type listType = new TypeToken<List<Groups>>() {
+                }.getType();
+                List<Groups> groupListTemp = gson.fromJson(json, listType);
+                if (groupListTemp != null) {
+                    groupList.addAll(groupListTemp);
+                }
                 dismissDialog();
             }
 
@@ -198,9 +246,10 @@ public class DownloadData extends AppCompatActivity implements VillageSelectList
     }
 
     public void dismissDialog() {
-        if (count >= totalSelectedVillages) {
+        if (groupCount >= totalSelectedVillages) {
             AppDatabase.getDatabaseInstance(context).getStudentDao().insertAllStudent(studentList);
             AppDatabase.getDatabaseInstance(context).getVillageDao().insertAllVillages(villageList);
+            AppDatabase.getDatabaseInstance(context).getGroupDao().insertAllGroups(groupList);
             progressDialogStudent.dismiss();
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setCancelable(false);
