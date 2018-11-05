@@ -57,8 +57,6 @@ public class DownloadData extends AppCompatActivity implements VillageSelectList
 
     List<String> VillageIDList = new ArrayList();
     List<Groups> groupList = new ArrayList();
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -250,6 +248,7 @@ public class DownloadData extends AppCompatActivity implements VillageSelectList
             AppDatabase.getDatabaseInstance(context).getStudentDao().insertAllStudent(studentList);
             AppDatabase.getDatabaseInstance(context).getVillageDao().insertAllVillages(villageList);
             AppDatabase.getDatabaseInstance(context).getGroupDao().insertAllGroups(groupList);
+
             progressDialogStudent.dismiss();
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setCancelable(false);

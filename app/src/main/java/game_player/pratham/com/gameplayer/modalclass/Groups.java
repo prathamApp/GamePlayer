@@ -27,6 +27,7 @@ public class Groups {
     @SerializedName("DeviceId")
     String DeviceId;
 
+
     @NonNull
     public String getGroupId() {
         return GroupId;

@@ -19,6 +19,10 @@ import butterknife.ButterKnife;
 import game_player.pratham.com.gameplayer.R;
 import game_player.pratham.com.gameplayer.database.AppDatabase;
 import game_player.pratham.com.gameplayer.interfaces.StudentListLisner;
+import game_player.pratham.com.gameplayer.modalclass.GroupNameID;
+import game_player.pratham.com.gameplayer.modalclass.Groups;
+import game_player.pratham.com.gameplayer.modalclass.Village;
+import game_player.pratham.com.gameplayer.modalclass.VillageNameID;
 import game_player.pratham.com.gameplayer.utils.BackupDatabase;
 
 public class PlayGame extends AppCompatActivity implements StudentListLisner {
@@ -88,29 +92,54 @@ public class PlayGame extends AppCompatActivity implements StudentListLisner {
 
 
     private void loadSpiner() {
-        List<String> block = new ArrayList<>();
-        block.add("Select block");
-        block.addAll(AppDatabase.getDatabaseInstance(context).getVillageDao().getUniqBlockNames());
-        if (!block.isEmpty()) {
-            ArrayAdapter blockAdapter = new ArrayAdapter(context, android.R.layout.simple_spinner_item, block);
-            blockAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-            villageSpinner.setAdapter(blockAdapter);
-            villageSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                @Override
-                public void onItemSelected(AdapterView<?> adapterView, View view, int pos, long l) {
-                    if(pos>0){
+        List<VillageNameID> villages = new ArrayList<>();
+        villages.add(new VillageNameID("Select village"));
+        List<String> villageIds = AppDatabase.getDatabaseInstance(context).getGroupDao().getUniqVillageIdByBlockName();
+        if (villageIds != null && !villageIds.isEmpty()) {
+            List<Village> villageNames = AppDatabase.getDatabaseInstance(context).getVillageDao().getUniqVillageNames(villageIds);
+            // villages.addAll(AppDatabase.getDatabaseInstance(context).getVillageDao().getUniqBlockNames());
+            for (Village village : villageNames) {
+                villages.add(new VillageNameID(village.getVillageId(), village.getVillageName()));
+            }
 
+            if (!villages.isEmpty()) {
+                ArrayAdapter blockAdapter = new ArrayAdapter(context, android.R.layout.simple_spinner_item, villages);
+                blockAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                villageSpinner.setAdapter(blockAdapter);
+                villageSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    @Override
+                    public void onItemSelected(AdapterView<?> adapterView, View view, int pos, long l) {
+                        if (pos > 0) {
+                            List<GroupNameID> groupList = new ArrayList<>();
+                            groupList.add(new GroupNameID("Select Group"));
+                            String groupId = ((VillageNameID) adapterView.getSelectedItem()).getVillageId();
+                            List<Groups> groups = AppDatabase.getDatabaseInstance(context).getGroupDao().getUniqGroupsByVillageId(groupId);
+                            for (Groups groups1 : groups) {
+                                groupList.add(new GroupNameID(groups1.getGroupId(), groups1.getGroupName()));
+                            }
+                            ArrayAdapter groupAdapter = new ArrayAdapter(context, android.R.layout.simple_spinner_item, groupList);
+                            groupAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                            groupSpinner.setAdapter(groupAdapter);
+                            groupSpinner.setEnabled(true);
+                        } else {
+                            groupSpinner.setSelection(0);
+                            groupSpinner.setEnabled(false);
+                        }
 
                     }
 
-                }
+                    @Override
+                    public void onNothingSelected(AdapterView<?> adapterView) {
 
-                @Override
-                public void onNothingSelected(AdapterView<?> adapterView) {
+                    }
+                });
+            }
 
-                }
-            });
+        } else {
+            Toast.makeText(context, "Please Download a data", Toast.LENGTH_SHORT).show();
         }
+
+
 
 
         /*List studList = AppDatabase.getDatabaseInstance(context).getStudentDao().getAllStudant();

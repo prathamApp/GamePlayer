@@ -4,6 +4,10 @@ public class VillageNameID {
     String villageName;
     String villageId;
 
+    public VillageNameID( String villageName) {
+        this.villageName = villageName;
+    }
+
     public VillageNameID(String villaId, String villageName) {
         this.villageName = villageName;
         this.villageId = villaId;

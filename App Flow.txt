@@ -1,0 +1,7 @@
+Download all data 
+
+
+In Play Game
+
+1 get all the uniq villageId in Group TAble(Downloaded Villages Id)
+2 get all village names according villageId from village Table and show in drop down

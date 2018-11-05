@@ -14,6 +14,6 @@ public interface VillageDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     public void insertAllVillages(List<Village> villagesList);
 
-    @Query("SELECT DISTINCT Block FROM Village")
-    public List<String> getUniqBlockNames();
+    @Query("SELECT DISTINCT VillageId ,VillageName FROM Village WHERE VillageId In(:villageIds)")
+    public List<Village> getUniqVillageNames(List<String> villageIds);
 }

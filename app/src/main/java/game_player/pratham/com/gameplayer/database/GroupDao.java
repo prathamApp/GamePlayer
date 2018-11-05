@@ -14,6 +14,14 @@ public interface GroupDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     public void insertAllGroups(List<Groups> groupsList);
 
-    @Query("SELECT DISTINCT Block FROM Village")
-    public List<String> getUniqBlockNames();
+   /* @Query("SELECT DISTINCT Block FROM Village")
+    public List<String> getUniqBlockNames();*/
+
+    @Query("SELECT DISTINCT VillageId FROM Groups")
+    public List<String> getUniqVillageIdByBlockName();
+
+
+    @Query("SELECT *  FROM Groups WHERE VillageId=:villageId")
+    public List<Groups> getUniqGroupsByVillageId(String villageId);
+
 }
