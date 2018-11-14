@@ -24,4 +24,9 @@ public class JavaScriptInterface {
     public void playNextGame() {
         jsListner.playNext();
     }
+
+    @JavascriptInterface   // must be added for API 17 or higher
+    public void needHelp() {
+        jsListner.playNext();
+    }
 }

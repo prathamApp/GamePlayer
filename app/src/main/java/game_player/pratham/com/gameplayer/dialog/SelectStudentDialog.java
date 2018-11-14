@@ -6,9 +6,11 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.view.Gravity;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.GridLayout;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,9 +20,11 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import game_player.pratham.com.gameplayer.R;
 import game_player.pratham.com.gameplayer.interfaces.VillageSelectListener;
-import game_player.pratham.com.gameplayer.modalclass.VillageNameID;
+import game_player.pratham.com.gameplayer.modalclass.Student;
 
-public class SelectVillageDialog extends Dialog {
+import static android.widget.CompoundButton.OnCheckedChangeListener;
+
+public class SelectStudentDialog extends Dialog {
 
     @BindView(R.id.txt_clear_changes)
     TextView clear_changes;
@@ -32,17 +36,16 @@ public class SelectVillageDialog extends Dialog {
     GridLayout flowLayout;
 
     Context context;
-    List<VillageNameID> villageList;
+    List<Student> studentList;
     List<CheckBox> checkBoxes = new ArrayList<>();
     VillageSelectListener villageSelectListener;
+    int count = 0;
 
-
-    public SelectVillageDialog(@NonNull Context context, List tempList) {
+    public SelectStudentDialog(@NonNull Context context, List tempList) {
         super(context, android.R.style.Theme_DeviceDefault_NoActionBar_Fullscreen);
-        this.villageList = tempList;
+        this.studentList = tempList;
         this.context = context;
         this.villageSelectListener = (VillageSelectListener) context;
-
     }
 
     @Override
@@ -52,11 +55,10 @@ public class SelectVillageDialog extends Dialog {
         ButterKnife.bind(this);
         setCanceledOnTouchOutside(false);
         setCancelable(false);
-        txt_message_village.setText("Select Village");
-        for (int i = 0; i < villageList.size(); i++) {
+        for (int i = 0; i < studentList.size(); i++) {
             CheckBox checkBox = new CheckBox(context);
-            checkBox.setText(villageList.get(i).getVillageName());
-            checkBox.setTag(villageList.get(i).getVillageId());
+            checkBox.setText(studentList.get(i).getFullName());
+            checkBox.setTag(studentList.get(i).getStudentId());
             GridLayout.LayoutParams param = new GridLayout.LayoutParams();
             param.height = GridLayout.LayoutParams.WRAP_CONTENT;
             param.width = GridLayout.LayoutParams.WRAP_CONTENT;
@@ -64,6 +66,19 @@ public class SelectVillageDialog extends Dialog {
             checkBox.setLayoutParams(param);
             flowLayout.addView(checkBox);
             checkBoxes.add(checkBox);
+            checkBox.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                    if (count == 5 && b) {
+                        compoundButton.setChecked(false);
+                        Toast.makeText(context, "Limit reached!!!", Toast.LENGTH_SHORT).show();
+                    } else if (b) {
+                        count++;
+                    } else if (!b) {
+                        count--;
+                    }
+                }
+            });
         }
     }
 

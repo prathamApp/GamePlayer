@@ -52,9 +52,7 @@ public class DownloadData extends AppCompatActivity implements VillageSelectList
     List<Student> studentList = new ArrayList<>();
     int count = 0;
     int groupCount = 0;
-    int totalSelectedVillages = 0;
     ProgressDialog progressDialogStudent;
-
     List<String> VillageIDList = new ArrayList();
     List<Groups> groupList = new ArrayList();
     @Override
@@ -158,7 +156,7 @@ public class DownloadData extends AppCompatActivity implements VillageSelectList
     }
 
     @Override
-    public void getSelectedVillage(ArrayList<String> villageIDList) {
+    public void getSelectedItems(ArrayList<String> villageIDList) {
         studentList.clear();
         count = 0;
         progressDialogStudent = new ProgressDialog(context);
@@ -205,7 +203,7 @@ public class DownloadData extends AppCompatActivity implements VillageSelectList
     }
 
     private void loadGroups() {
-        if (count >= totalSelectedVillages) {
+        if (count >= VillageIDList.size()) {
             groupCount = 0;
             groupList.clear();
             for (String id : VillageIDList) {
@@ -244,7 +242,14 @@ public class DownloadData extends AppCompatActivity implements VillageSelectList
     }
 
     public void dismissDialog() {
-        if (groupCount >= totalSelectedVillages) {
+        if (groupCount >=  VillageIDList.size()) {
+
+            //deleting previous data
+            AppDatabase.getDatabaseInstance(context).getStudentDao().deleteAllStudent();
+            AppDatabase.getDatabaseInstance(context).getVillageDao().deleteAllVillages();
+            AppDatabase.getDatabaseInstance(context).getGroupDao().deleteAllGroups();
+
+            //inserting new Downloaded data
             AppDatabase.getDatabaseInstance(context).getStudentDao().insertAllStudent(studentList);
             AppDatabase.getDatabaseInstance(context).getVillageDao().insertAllVillages(villageList);
             AppDatabase.getDatabaseInstance(context).getGroupDao().insertAllGroups(groupList);

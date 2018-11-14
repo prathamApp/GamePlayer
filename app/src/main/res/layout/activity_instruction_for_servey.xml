@@ -64,11 +64,11 @@
         <Spinner
             android:id="@+id/spiner_leaderName"
             android:background="@drawable/gradient_spinner"
-            style="@style/textViewStyle_main_A" />
+            style="@style/spinnerStyle_main_A" />
     </LinearLayout>
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/next_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"

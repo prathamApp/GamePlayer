@@ -17,9 +17,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import game_player.pratham.com.gameplayer.R;
-import game_player.pratham.com.gameplayer.database.AppDatabase;
 import game_player.pratham.com.gameplayer.modalclass.GamesAssignedStudent;
-import game_player.pratham.com.gameplayer.modalclass.Student;
 import game_player.pratham.com.gameplayer.modalclass.StudentForSpinner;
 
 public class AssignGame extends AppCompatActivity {
@@ -38,7 +36,6 @@ public class AssignGame extends AppCompatActivity {
     Spinner game5Spinner;
 
 
-    ArrayList selectedStudent;
     List game1List = new ArrayList();
     List game2List = new ArrayList();
     List game3List = new ArrayList();
@@ -62,13 +59,13 @@ public class AssignGame extends AppCompatActivity {
         setContentView(R.layout.activity_assign_game);
         ButterKnife.bind(this);
         context = AssignGame.this;
-        selectedStudent = (ArrayList) getIntent().getSerializableExtra("selectedStudent");
-        getStudents();
+        selectedStudentList = (ArrayList) getIntent().getSerializableExtra("selectedStudent");
+       // getStudents();
         loadSpinner();
         //getGameNamesFromAssets();
     }
 
-    private void getStudents() {
+   /* private void getStudents() {
         selectedStudentList.clear();
         selectedStudentList.add(new StudentForSpinner("Select Student"));
         Student student;
@@ -78,7 +75,7 @@ public class AssignGame extends AppCompatActivity {
                 selectedStudentList.add(new StudentForSpinner(student.getStudentId(), student.getFullName()));
             }
         }
-    }
+    }*/
 
     private void loadSpinner() {
         ArrayAdapter adapter = new ArrayAdapter(context, R.layout.support_simple_spinner_dropdown_item, selectedStudentList);
@@ -277,7 +274,6 @@ public class AssignGame extends AppCompatActivity {
             startActivity(intent);
         } else {
             Toast.makeText(context, "select student for all games", Toast.LENGTH_SHORT).show();
-
 
            /* selectedStudentWithGame.add(stude1);
             selectedStudentWithGame.add(stude2);

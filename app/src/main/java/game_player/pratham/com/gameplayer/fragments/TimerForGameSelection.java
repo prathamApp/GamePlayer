@@ -45,7 +45,7 @@ public class TimerForGameSelection extends Fragment {
                 int progress=(int)(100*seconds)/60;
 
                 barTimer.setProgress((int) progress);
-                  textTimer.setText(String.format("%02d", seconds/60) + ":" + String.format("%02d", seconds%60));
+                textTimer.setText(String.format("%02d", seconds/60) + ":" + String.format("%02d", seconds%60));
                 // format the textview to show the easily readable format
 
             }

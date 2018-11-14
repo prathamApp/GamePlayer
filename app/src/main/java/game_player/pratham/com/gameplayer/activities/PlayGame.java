@@ -1,13 +1,15 @@
 package game_player.pratham.com.gameplayer.activities;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -18,25 +20,26 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import game_player.pratham.com.gameplayer.R;
 import game_player.pratham.com.gameplayer.database.AppDatabase;
-import game_player.pratham.com.gameplayer.interfaces.StudentListLisner;
+import game_player.pratham.com.gameplayer.dialog.SelectStudentDialog;
+import game_player.pratham.com.gameplayer.interfaces.VillageSelectListener;
 import game_player.pratham.com.gameplayer.modalclass.GroupNameID;
 import game_player.pratham.com.gameplayer.modalclass.Groups;
+import game_player.pratham.com.gameplayer.modalclass.Student;
+import game_player.pratham.com.gameplayer.modalclass.StudentForSpinner;
 import game_player.pratham.com.gameplayer.modalclass.Village;
 import game_player.pratham.com.gameplayer.modalclass.VillageNameID;
 import game_player.pratham.com.gameplayer.utils.BackupDatabase;
 
-public class PlayGame extends AppCompatActivity implements StudentListLisner {
+public class PlayGame extends AppCompatActivity implements VillageSelectListener {
     Context context;
-    @BindView(R.id.studentSpinner)
-    Spinner studentSpinner;
+    /*@BindView(R.id.studentSpinner)
+    Spinner studentSpinner;*/
     @BindView(R.id.villageSpinner)
     Spinner villageSpinner;
     @BindView(R.id.groupSpinner)
     Spinner groupSpinner;
-    @BindView(R.id.btn_next)
-    Button btn_next;
-
-    ArrayList selectedStudent = new ArrayList<>();
+    /*@BindView(R.id.btn_next)
+    Button btn_next;*/ ArrayList selectedStudent = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +50,18 @@ public class PlayGame extends AppCompatActivity implements StudentListLisner {
         BackupDatabase.backup(context);
         int studCount = AppDatabase.getDatabaseInstance(context).getStudentDao().getStudantCount();
         if (studCount <= 0) {
-            // pullStudents();
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setCancelable(false);
+            builder.setMessage("No Student Found Please Download A Data");
+            builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    dialogInterface.dismiss();
+                    finish();
+                }
+            });
+            Dialog dialog = builder.create();
+            dialog.show();
         } else {
             loadSpiner();
         }
@@ -83,12 +97,16 @@ public class PlayGame extends AppCompatActivity implements StudentListLisner {
         });
     }*/
 
-    public void nextActivity(View view) {
+   /* public void nextActivity(View view) {
+        List<Student> studentList = AppDatabase.getDatabaseInstance(context).getStudentDao().getStudantsByIDs(selectedStudent);
+        ArrayList<StudentForSpinner> studentForSpinnersList = new ArrayList<>();
+        for (Student student : studentList) {
+            studentForSpinnersList.add(new StudentForSpinner(student.getStudentId(), student.getFullName()));
+        }
         Intent intent = new Intent(context, InstructionForServey.class);
-
-        intent.putExtra("selectedStudent", selectedStudent);
+        intent.putExtra("selectedStudent", studentForSpinnersList);
         startActivity(intent);
-    }
+    }*/
 
 
     private void loadSpiner() {
@@ -133,6 +151,28 @@ public class PlayGame extends AppCompatActivity implements StudentListLisner {
 
                     }
                 });
+
+
+                groupSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    @Override
+                    public void onItemSelected(AdapterView<?> adapterView, View view, int pos, long l) {
+                        if (pos > 0) {
+                            GroupNameID groupNameID = (GroupNameID) adapterView.getSelectedItem();
+                            List<Student> studentList = AppDatabase.getDatabaseInstance(context).getStudentDao().getStudantByGroupID(groupNameID.getGroupId());
+                            if (studentList != null && !studentList.isEmpty()) {
+                                SelectStudentDialog selectStudentDialog = new SelectStudentDialog(context, studentList);
+                                selectStudentDialog.show();
+                            } else {
+                                Toast.makeText(context, "No Students are present in this group", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onNothingSelected(AdapterView<?> adapterView) {
+
+                    }
+                });
             }
 
         } else {
@@ -150,12 +190,21 @@ public class PlayGame extends AppCompatActivity implements StudentListLisner {
     }
 
     @Override
-    public void getSelectedVillage(ArrayList list) {
-        if (list.size() >= 5) {
-            selectedStudent = list;
-            btn_next.setEnabled(true);
+    public void getSelectedItems(ArrayList selectedStudent) {
+        if (selectedStudent.size() >= 2) {
+            //  selectedStudent = list;
+            //btn_next.setEnabled(true);
+            List<Student> studentList = AppDatabase.getDatabaseInstance(context).getStudentDao().getStudantsByIDs(selectedStudent);
+            ArrayList<StudentForSpinner> studentForSpinnersList = new ArrayList<>();
+            for (Student student : studentList) {
+                studentForSpinnersList.add(new StudentForSpinner(student.getStudentId(), student.getFullName()));
+            }
+            Intent intent = new Intent(context, InstructionForServey.class);
+            intent.putExtra("selectedStudent", studentForSpinnersList);
+            startActivity(intent);
         } else {
-            Toast.makeText(context, "Must Be select 5 student", Toast.LENGTH_SHORT).show();
+            // btn_next.setEnabled(false);
+            Toast.makeText(context, "Must Be select 2 students", Toast.LENGTH_SHORT).show();
         }
     }
 

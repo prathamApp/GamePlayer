@@ -5,6 +5,7 @@ import android.content.res.AssetManager;
 
 import java.io.InputStream;
 import java.util.Properties;
+import java.util.UUID;
 
 public class Utility {
     public static String getProperty(String key, Context context) {
@@ -17,5 +18,9 @@ public class Utility {
         } catch (Exception ex) {
             return null;
         }
+    }
+
+    public static String getUniqueID() {
+        return UUID.randomUUID().toString();
     }
 }

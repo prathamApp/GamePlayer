@@ -16,4 +16,7 @@ public interface VillageDao {
 
     @Query("SELECT DISTINCT VillageId ,VillageName FROM Village WHERE VillageId In(:villageIds)")
     public List<Village> getUniqVillageNames(List<String> villageIds);
+
+    @Query("DELETE FROM Village ")
+    public int deleteAllVillages();
 }

@@ -24,6 +24,7 @@ import game_player.pratham.com.gameplayer.R;
 import game_player.pratham.com.gameplayer.interfaces.JSListner;
 import game_player.pratham.com.gameplayer.modalclass.GamesAssignedStudent;
 import game_player.pratham.com.gameplayer.utils.JavaScriptInterface;
+import game_player.pratham.com.gameplayer.utils.Utility;
 
 public class WebViewActivity extends AppCompatActivity implements JSListner {
     @BindView(R.id.webView)
@@ -32,7 +33,7 @@ public class WebViewActivity extends AppCompatActivity implements JSListner {
     List<GamesAssignedStudent> gamesList;
     Context context;
     int gameIndex = 0;
-
+    String sessionID;
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +44,7 @@ public class WebViewActivity extends AppCompatActivity implements JSListner {
         context = WebViewActivity.this;
         ButterKnife.bind(this);
         gamesList = (ArrayList) getIntent().getSerializableExtra("listGames");
+        sessionID=Utility.getUniqueID();
         loadGame();
     }
 
@@ -87,5 +89,10 @@ public class WebViewActivity extends AppCompatActivity implements JSListner {
     public void playNext() {
         gameIndex++;
         callNextGame();
+    }
+
+    @Override
+    public void needHelp() {
+
     }
 }

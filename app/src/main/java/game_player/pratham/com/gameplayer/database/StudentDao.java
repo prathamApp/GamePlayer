@@ -17,10 +17,19 @@ public interface StudentDao {
     @Query("SELECT COUNT(*) FROM Student")
     public int getStudantCount();
 
-    @Query("SELECT * FROM Student")
-    public List<Student> getAllStudant();
+   /* @Query("SELECT * FROM Student")
+    public List<Student> getAllStudant();*/
 
     @Query("SELECT * FROM Student WHERE StudentId=:id")
     public Student getStudantByID(String id);
 
+    @Query("SELECT * FROM Student WHERE GroupId=:groupId")
+    public List<Student> getStudantByGroupID(String groupId);
+
+
+    @Query("SELECT * FROM Student WHERE StudentId IN(:idList)")
+    public List<Student> getStudantsByIDs(List<String> idList);
+
+    @Query("DELETE FROM Student")
+    public int deleteAllStudent();
 }

@@ -24,4 +24,7 @@ public interface GroupDao {
     @Query("SELECT *  FROM Groups WHERE VillageId=:villageId")
     public List<Groups> getUniqGroupsByVillageId(String villageId);
 
+    @Query("DELETE FROM Groups")
+    public int deleteAllGroups();
+
 }

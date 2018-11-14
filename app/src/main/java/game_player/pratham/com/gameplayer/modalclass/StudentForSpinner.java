@@ -1,6 +1,8 @@
 package game_player.pratham.com.gameplayer.modalclass;
 
-public class StudentForSpinner {
+import java.io.Serializable;
+
+public class StudentForSpinner implements Serializable {
     String studId;
     String studName;
     boolean isSelected=false;
