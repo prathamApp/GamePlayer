@@ -20,30 +20,62 @@ body
 	background-repeat: no-repeat;
 	background-position:center;
 }
-.cell
-{
-	background-color:white;
-	border-radius:2vw;
-	border:1px solid black;
-	
-}
 .nopadding
 {
 	padding:0!important;
 }
-.imgcls
+.option
 {
-	border-radius:2vw;
-	height:20vh;
+	font-size:2vw;
+	background-color: white;
+    border-radius: 0.5vw;
+	height:14vh;
+}
+.colorHeight
+{
+		margin: 2% 6% 0% 6%;
+		width: 38%;
+		float: left;
+		height: 5vh;	
+		border: 1px solid black;
+}
+.selectedColorHeight{
+	margin-top: 2%;
+	margin-bottom: 15%;
+	border: 1px solid silver;
+	height: 8vh;	
+}
+.textcls
+{
+	font-size:1.5vw;
+}
+.opacityCls
+{
+	opacity:0.5;
+}
+#Canvas
+{
+	 
+	/*border:1px solid black; */
+	visibility:hidden;
+	margin-top: -1vh;
+	background-color:white;
+	background-position:center;
+/* 	background-attachment:fixed; */
+	background-repeat:no-repeat;
+	background-size:100% 100%;
+	padding:0!important;
+}
+#Canvasdraw
+{
+	position:absolute;
+	margin-top:8vh;
+	padding:0!important;
+	z-index:100;
 }
 #gamePage
 {
-	margin-top:-2vh;
-}
-#OuterDiv
-{
-	margin-top:-1vh;
-	z-index:100;
+	margin-top:-9vh;
 }
 #homeImage
 {
@@ -51,6 +83,7 @@ body
 }
 #logoImage
 {
+	visibility:hidden;
 }
 #playButton
 {
@@ -59,49 +92,6 @@ body
 #homeButton
 {
 	padding:0px;
-}
-#soundDiv
-{
-	margin-top: 72vh;	
-}
-#scoreText
-{
-	font-size:2.5vw;
-	font-weight:bold;
-	margin-top: 1vh;
-}
-#score
-{
-	font-size:3vw;
-	font-weight:bold;
-	margin-top: -2vh;
-}
-#smileeDiv
-{
-	margin-top:-20vh;
-}
-#clockDiv
-{
-	visibility:hidden;
-	margin-top:-1vh;
-}
-#timerSpan,#secondsSpan
-{
-	font-size:4vw;
-	font-weight:bold;	
-}
-#scoreDiv
-{
-	background-color:white;
-	border-radius:50%;
-	height:18vh;
-	visibility:hidden;
-}
-#bottomDiv
-{
-	bottom:0;
-	position:fixed;
-	z-index:100;
 }
 #gameOverText
 {
@@ -113,44 +103,57 @@ body
 #endPage
 {
 	margin-top:2vh;
-	font-size:2.5vw;
+	font-size:3vw;
 }
-#start
-{
-	font-size:2vw;
+#paletteSection{
+	padding: 0px;
+	visibility:hidden;
+	background-color:white;
+	border-radius:0.5vw;
+	margin-top:25vh;
+	margin-left:1vw;
+	z-index:100;
 }
-.closed
-{
-		float:right;
-		margin-top:-2vh;
-		color:red;
-		font-size:2.5vw;
+#colorPalette{
+	/*box-shadow: 2px 2px 1px deepskyblue;*/
+	padding: 0px;
+	background-color: aliceblue;
+	border: 2px solid deepskyblue;
+	border-radius: 5Px;
+	margin-bottom:2vh;
 }
-#questionMsg
-{
-	font-size:1.8vw;
+
+#colors{
+	padding: 0px;
 }
-.modal 
-{
-	display: none; /* Hidden by default */
-	position: fixed; /* Stay in place */
-	z-index: 1; /* Sit on top */
-	padding-top: 100px; /* Location of the box */
-	left: 0;
-	top: 0;
-	width: 100%; /* Full width */
-	height: 100%; /* Full height */
-	overflow: auto; 
-	background-color: rgba(0,0,0,0.6); 
+#selected{
+	padding: 0px;	
 }
-.modal-content
+
+#scoreDiv
 {
-	background-color:#ffffff !important;	
+	background-color:white;
+	border-radius:50%;
+	height:12vh;
+}
+#clockDiv
+{
+	visibility:hidden;
+}
+#timerSpan,#secondsSpan
+{
+	font-size:4vw;
+	font-weight:bold;	
+}
+#bottomDiv,#nextGame,#nextPage
+{
+	bottom:0;
+	position:fixed;
 }
 #instructionDiv
 {
-   display:none;
-   border: 1px solid black;
+	display:none;
+	border: 1px solid black;
    border-radius: 1vw;
    font-size: 3vw;
    font-weight: 500;
@@ -158,17 +161,33 @@ body
    top: 25vh;
    box-shadow: -3px 3px 19px rgb(0, 0, 0);
 }
-.fontClass
+#helpDiv
 {
-	font-family:"Calibri";
-	font-size:2vw;
-	margin-top:1.5%;
+	bottom:20vh;
+	position:fixed;
 }
-#gameOverText
+#selectOptionsPage
 {
-	margin-top: 1%;	
-	text-align:center;
-	font-size:4vw;
-	font-weight:bold;	
+	display:none;
 }
-
+#questionDiv
+{
+	font-size:2.5vw;
+}
+#row1,#row2,#row3
+{
+	margin-top:3vh;
+}
+#videoDiv
+{
+   display:none;
+}
+#videoTag
+{
+	height: 85vh;
+	margin-top: -5vh;
+}
+#helpBtn
+{
+	visibility:hidden;
+}

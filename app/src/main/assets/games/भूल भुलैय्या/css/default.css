@@ -1,0 +1,86 @@
+* {
+  font-family: Arial, sans-serif;
+  text-align: center;
+}
+body, html{
+user-select:none;
+	background-position:center;
+	background-attachment:fixed;
+	background-repeat:no-repeat;
+	background-size:100% 100%;
+	overflow:hidden;
+	height:100vh;
+}
+.noPadding{
+padding:0px;  
+}
+#coverPage{
+height:100%;	
+}
+#gamePage{
+height:100%;
+display:none;
+margin-top: -9vh;
+}
+#canvasDiv{
+
+	/*width:44vw;
+		margin-left:28vw;*/
+	width: 48%;
+    margin-left: 27%;
+    height: 80%;
+}
+/* #nextDiv{
+    margin-top: -4vh;
+
+} */
+#mainForm{
+	width: 100%;
+    height: 100%;
+	border: 1px solid black;
+}
+#timerSpan{
+	font-size:5vw;
+}
+#videoTag{
+	margin-top:5vh;
+}
+#endPage{
+	margin-top:15vh;
+	font-size: 3vw;
+}
+.msgs{
+		font-size: 2.5vw;
+		position:absolute;
+}
+#helpDiv{
+	visibility:hidden;
+}
+#navigationDiv{
+	margin-top:25vh;
+}
+#start{
+	margin-left:-5vw;
+}
+#end{
+    position: fixed;
+    margin-top: 74vh;
+    /* bottom: 2vw; */
+    right: 20vw;
+}
+
+#instructionDiv
+{
+	
+   border-radius: 1vw;
+   font-size: 3.2vw;
+   font-weight: 500;
+   position: fixed;
+   top: 21vh;
+box-shadow: -3px 3px 19px rgb(0, 0, 0);
+}
+#nextLastPage
+{
+position:fixed;
+bottom:0;
+}

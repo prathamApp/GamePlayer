@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-  <title>MemoryGame</title>
+  <title>DrawingGame</title>
  <meta charset="utf-8"> 
 	 <link rel="stylesheet" href="css/bootstrap.min.css"></link>
 	<link rel="stylesheet" href="css/animate.css"></link>
@@ -13,68 +13,130 @@
     <script src ="js/bootstrap.min.js"></script>
 	<script src="js/jquery.ui.touch-punch.min.js"></script>
 	<script src ="js/utils.js"></script>
-	<script src ="js/memoryGameScript.js"></script>
-	<script src ="js/memoryGameData.js"></script>
+	<script src ="js/sketch.js"></script>
 </head>
 <body>
 <div style="background-image:url(css/Preloader_3.gif);" class="se-pre-con col-lg-12 col-md-12 col-xs-12 col-sm-12"></div>
 	<audio id="playSound"></audio>
 		<div id="homeAndLogoDiv" class="nopadding col-xs-12 col-md-12 col-lg-12 col-sm-12">
-			<div id="homeButton" class="nopadding col-xs-1 col-md-1 col-lg-1 col-sm-1">
-				<img class="nopadding img-responsive col-xs-10 col-md-10 col-lg-10 col-sm-10 col-xs-offset-2 col-md-offset-2 col-lg-offset-2 col-sm-offset-2" id="homeImage" onclick="Memorygame.goToHome();">
-			</div>
-			<div id="clockDiv" class="nopadding col-sm-3 col-lg-3 col-md-3 col-xs-3 col-sm-offset-4 col-lg-offset-4 col-md-offset-4 col-xs-offset-4">
-				<img id="clockImage" class="nopadding img-responsive col-sm-2 col-lg-2 col-md-2 col-xs-2">
+			<!-- <div id="homeButton" class="nopadding col-xs-1 col-md-1 col-lg-1 col-sm-1">
+				<img class="nopadding img-responsive col-xs-10 col-md-10 col-lg-10 col-sm-10 col-xs-offset-2 col-md-offset-2 col-lg-offset-2 col-sm-offset-2" id="homeImage" onclick="Drawing.goToHome();">
+			</div> -->
+			<div id="clockDiv" class="nopadding col-sm-3 col-lg-3 col-md-3 col-xs-3">
 				<span id="timerSpan" class="nopadding"></span>
 				<span id="secondsSpan" class="nopadding"></span>
 			</div>
-			<div class="nopadding col-xs-1 col-md-1 col-lg-1 col-sm-1 col-xs-offset-3 col-md-offset-3 col-lg-offset-3 col-sm-offset-3">
+			<div class="nopadding col-xs-1 col-md-1 col-lg-1 col-sm-1 col-xs-offset-8 col-md-offset-8 col-lg-offset-8 col-sm-offset-8">
 				<img class="nopadding img-responsive col-xs-10 col-md-10 col-lg-10 col-sm-10 col-xs-offset-1 col-md-offset-1 col-lg-offset-1 col-sm-offset-1" id="logoImage" >
 			</div> 
 		</div>
 		<div id="coverPage" class="col-xs-12 col-md-12 col-lg-12 col-sm-12">
-			<div id="instructionDiv" class="col-xs-6 col-md-6 col-lg-6 col-sm-6 col-xs-offset-3 col-md-offset-3 col-lg-offset-3 col-sm-offset-3"></div>
-			<div id="playButton" class="col-xs-1 col-md-1 col-lg-1 col-sm-1 col-xs-offset-5 col-md-offset-5 col-lg-offset-5 col-sm-offset-5" style="position:fixed;bottom:0">
-				<img class="nopadding img-responsive col-xs-12 col-md-12 col-lg-12 col-sm-12 " id="play" onclick="Memorygame.playGame();" style="padding:0px;">
+			<!-- <div id="instructionDiv" class="col-xs-6 col-md-6 col-lg-6 col-sm-6 col-xs-offset-3 col-md-offset-3 col-lg-offset-3 col-sm-offset-3"></div> -->
+			<div id="videoDiv" class="nopadding col-xs-6 col-md-6 col-lg-6 col-sm-6 col-xs-offset-3 col-md-offset-3 col-lg-offset-3 col-sm-offset-3">
+				<video id="videoTag" class="nopadding col-xs-12 col-md-12 col-lg-12 col-sm-12" controls></video>
+			</div>
+			<div id="playButton" class="col-xs-1 col-md-1 col-lg-1 col-sm-1 col-xs-offset-11 col-md-offset-11 col-lg-offset-11 col-sm-offset-11" style="position:fixed;bottom:0">
+				<img class="nopadding img-responsive col-xs-10 col-md-10 col-lg-10 col-sm-10 " id="play" onclick="Drawing.playGame();" style="padding:0px;">
 			</div>
 		</div>
 		<div id="gamePage" class="nopadding col-sm-12 col-md-12 col-lg-12 col-xs-12">
-			<div id="OuterDiv" class="col-sm-12 col-md-12 col-lg-12 col-xs-12">
-			</div>
-			<div id="" class="col-sm-12 col-md-12 col-lg-12 col-xs-12">
-				<div id="smileeDiv" class="col-sm-2 col-md-2 col-lg-2 col-xs-2">
-					<img id="smileeImg" class="nopadding img-responsive col-xs-12 col-md-12 col-lg-12 col-sm-12" style="padding:0px;">
+			<div id="helpDiv" class="nopadding col-xs-1 col-md-1 col-lg-1 col-sm-1">
+				<img id="helpBtn" class="nopadding img-responsive col-sm-12 col-md-12 col-lg-12 col-xs-12" onclick="Drawing.isHelpTaken();">
+			</div> 
+			<div id="paletteSection" class="col-sm-1 col-xs-1 col-md-1 col-lg-1">
+				<div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
+					<img class="nopadding img-responsive col-sm-12 col-xs-12 col-md-12 col-lg-12" id="eraser">
 				</div>
-			</div>
-			<div id="bottomDiv" class="nopadding col-sm-1 col-md-1 col-lg-1 col-xs-1 col-sm-offset-11 col-lg-offset-11 col-md-offset-11 col-xs-offset-11">
-				<div id="nextDiv" class="nopadding col-xs-12 col-md-12 col-lg-12 col-sm-12">
-					<img id="nextButton" class="nopadding col-xs-12 col-md-12 col-lg-12 col-sm-12 img-responsive"  onclick="Memorygame.showEndPage();">
+				<!--  <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
+					<img id="clearCanvas" class="img-responsive col-sm-12 col-xs-12 col-md-12 col-lg-12"  style="padding:0px;">
+				</div> -->
+				<div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
+					<img id="selectedBrush" src="" class="img-responsive col-sm-12 col-xs-12 col-md-12 col-lg-12" style="padding:0px;">
 				</div>
+	    	 	<!--<div id="colorPalette" class="nopadding col-sm-12 col-xs-12 col-md-12 col-lg-12">
+	    	 	<div id="selected" class="nopadding col-sm-12 col-xs-12 col-md-12 col-lg-12">
+	    	 		<div id="selectedColor" class="nopadding selectedColorHeight col-sm-6 col-xs-6 col-md-6 col-lg-6 col-sm-offset-3 col-xs-offset-3 col-lg-offset-3 col-md-offset-3" style="background-color:#000000">
+	    	 		</div>
+				</div>
+	    	 	 <div id="colors" class="nopadding col-sm-12 col-xs-12 col-md-12 col-lg-12">
+	    	 		<div class="nopadding colorHeight" style="background-color:#da251d;"></div>
+	    	 		<div class="nopadding colorHeight" style="background-color:#8f5444;"></div>
+	    	 		<div class="nopadding colorHeight" style="background-color:#e77817;"></div>
+	    	 		<div class="nopadding colorHeight" style="background-color:#f19abe;"></div>
+	    	 		<div class="nopadding colorHeight" style="background-color:#f8c300;"></div>
+	    	 		<div class="nopadding colorHeight" style="background-color:#fff974;"></div>
+	    	 		<div class="nopadding colorHeight" style="background-color:#84c225;"></div>
+	    	 		<div class="nopadding colorHeight" style="background-color:#00923f;"></div>
+	    	 		<div class="nopadding colorHeight" style="background-color:#b1c5f0;"></div>
+	    	 		<div class="nopadding colorHeight" style="background-color:#0288d1;"></div>
+	    	 		<div class="nopadding colorHeight" style="background-color:#ab47bc;"></div>
+	    	 		<div class="nopadding colorHeight" style="background-color:#5e35b1;"></div>
+	    	 		<div class="nopadding colorHeight" style="background-color:#000000;"></div>
+	    	 		<div class="nopadding colorHeight" style="background-color:#ffffff;"></div>
+	    	 	</div> 
+	    	 	</div>-->
+	    	 </div>
+			<div class="nopadding col-sm-4 col-md-4 col-lg-4 col-xs-4 col-xs-offset-1 col-md-offset-1 col-lg-offset-1 col-sm-offset-1">
+				<canvas id="Canvas" width="700" height="425">
+				</canvas>
+				<!-- <canvas id="Canvasdraw" width="800" height="350">
+				</canvas> -->
+			</div> 
+			 <div id="bottomDiv" class="col-sm-12 col-md-12 col-lg-12 col-xs-12">
+				<div id="nextDiv" class="nopadding col-xs-1 col-md-1 col-lg-1 col-sm-1 col-sm-offset-11 col-lg-offset-11 col-md-offset-11 col-xs-offset-11">
+					<img id="nextButton" class="nopadding col-xs-12 col-md-12 col-lg-12 col-sm-12 img-responsive"  onclick="Drawing.showOptionsPage();">
+				</div>
+			 </div>
+		</div>
+		<div id="endPage" class="nopadding col-sm-12 col-lg-12 col-md-12 col-xs-12">
+			<div  class="nopadding col-sm-12 col-lg-12 col-md-12 col-xs-12">
+				<div id="strokes" class="noPadding text-center fontCls col-sm-4 col-lg-4 col-md-4 col-xs-4 col-sm-offset-4 col-lg-offset-4 col-md-offset-4 col-xs-offset-4"></div>
+			</div>
+			<div  class="nopadding col-sm-12 col-lg-12 col-md-12 col-xs-12">
+				<div id="time" class="nopadding text-center fontCls col-sm-4 col-lg-4 col-md-4 col-xs-4 col-sm-offset-4 col-lg-offset-4 col-md-offset-4 col-xs-offset-4"></div>
+			</div>
+			<div id="nextGame" class="nopadding col-xs-1 col-md-1 col-lg-1 col-sm-1 col-sm-offset-11 col-lg-offset-11 col-md-offset-11 col-xs-offset-11">
+				<img id="nextGameButton" class="nopadding img-responsive col-xs-12 col-md-12 col-lg-12 col-sm-12"  onclick="Drawing.showNextGame();">
 			</div>
 		</div>
-		<div id="endPage" class="noPadding col-sm-12 col-lg-12 col-md-12 col-xs-12">
-			<div  class="noPadding col-sm-12 col-lg-12 col-md-12 col-xs-12">
-				<div id="puzzleComplete" class="noPadding text-center fontCls col-sm-4 col-lg-4 col-md-4 col-xs-4 col-sm-offset-4 col-lg-offset-4 col-md-offset-4 col-xs-offset-4"></div>
-			</div>
-			<div  class="noPadding col-sm-12 col-lg-12 col-md-12 col-xs-12">
-				<div id="wrong" class="noPadding text-center fontCls col-sm-4 col-lg-4 col-md-4 col-xs-4 col-sm-offset-4 col-lg-offset-4 col-md-offset-4 col-xs-offset-4"></div>
-			</div>
-			<div  class="noPadding col-sm-12 col-lg-12 col-md-12 col-xs-12">
-				<div id="correct" class="noPadding text-center fontCls col-sm-4 col-lg-4 col-md-4 col-xs-4 col-sm-offset-4 col-lg-offset-4 col-md-offset-4 col-xs-offset-4"></div>
-			</div>
-			<div  class="noPadding col-sm-12 col-lg-12 col-md-12 col-xs-12">
-				<div id="time" class="noPadding text-center fontCls col-sm-4 col-lg-4 col-md-4 col-xs-4 col-sm-offset-4 col-lg-offset-4 col-md-offset-4 col-xs-offset-4"></div>
-			</div>
-		</div>
-		<div id="responseBoxDiv" class="modal" >
-			<div id="responseBox" class="modal-content col-lg-6 col-md-6 col-xs-6 col-sm-6 col-lg-offset-3 col-md-offset-3 col-xs-offset-3 col-sm-offset-3">
-				<h2 id="questionMsg" class="text-center"></h2>
-				<div class="nopadding col-sm-12 col-lg-12 col-md-12 col-xs-12" style="margin-bottom:1vh">
-					<!-- <button class="nopadding form-control col-lg-1 col-md-1 col-xs-1 col-sm-1 col-lg-offset-3 col-md-offset-3 col-xs-offset-3 col-sm-offset-3" onclick="memoryGame.startGame();">play</button> -->
-					<button id="start" type="button" class="nopadding btn btn-success col-sm-2 col-md-2 col-lg-2 col-xs-2 col-lg-offset-5 col-md-offset-5 col-xs-offset-5 col-sm-offset-5" onclick="Memorygame.startGame();"></button>
+		<div id="selectOptionsPage" class="nopadding col-sm-12 col-lg-12 col-md-12 col-xs-12">
+			<div id="questionDiv" class="nopadding text-center col-sm-8 col-lg-8 col-md-8 col-xs-8 col-xs-offset-2 col-md-offset-2 col-lg-offset-2 col-sm-offset-2">
+			</div>	
+			<div id="optionsDiv" class="nopadding col-sm-10 col-lg-10 col-md-10 col-xs-10 col-xs-offset-1 col-md-offset-1 col-lg-offset-1 col-sm-offset-1">
+				<div id="row1" class="nopadding text-center col-sm-12 col-lg-12 col-md-12 col-xs-12">
+					<div id="option1" class="nopadding option text-center col-sm-2 col-lg-2 col-md-2 col-xs-2 col-xs-offset-1 col-md-offset-1 col-lg-offset-1 col-sm-offset-1" onclick="Drawing.getSelectedOption(this.id);">
+					</div>
+					<div id="option2" class="nopadding option text-center col-sm-2 col-lg-2 col-md-2 col-xs-2 col-xs-offset-1 col-md-offset-1 col-lg-offset-1 col-sm-offset-1" onclick="Drawing.getSelectedOption(this.id);">
+					</div>
+					<div id="option3" class="nopadding option text-center col-sm-2 col-lg-2 col-md-2 col-xs-2 col-xs-offset-1 col-md-offset-1 col-lg-offset-1 col-sm-offset-1" onclick="Drawing.getSelectedOption(this.id);">
+					</div>
+					<div id="option4" class="nopadding option text-center col-sm-2 col-lg-2 col-md-2 col-xs-2 col-xs-offset-1 col-md-offset-1 col-lg-offset-1 col-sm-offset-1" onclick="Drawing.getSelectedOption(this.id);">
+					</div>
+				</div>
+				<div id="row2" class="nopadding text-center col-sm-12 col-lg-12 col-md-12 col-xs-12">
+					<div id="option5" class="nopadding option text-center col-sm-2 col-lg-2 col-md-2 col-xs-2 col-xs-offset-1 col-md-offset-1 col-lg-offset-1 col-sm-offset-1" onclick="Drawing.getSelectedOption(this.id);">
+					</div>
+					<div id="option6" class="nopadding option text-center col-sm-2 col-lg-2 col-md-2 col-xs-2 col-xs-offset-1 col-md-offset-1 col-lg-offset-1 col-sm-offset-1" onclick="Drawing.getSelectedOption(this.id);">
+					</div>
+					<div id="option7" class="nopadding option text-center col-sm-2 col-lg-2 col-md-2 col-xs-2 col-xs-offset-1 col-md-offset-1 col-lg-offset-1 col-sm-offset-1" onclick="Drawing.getSelectedOption(this.id);">
+					</div>
+					<div id="option8" class="nopadding option text-center col-sm-2 col-lg-2 col-md-2 col-xs-2 col-xs-offset-1 col-md-offset-1 col-lg-offset-1 col-sm-offset-1" onclick="Drawing.getSelectedOption(this.id);">
+					</div>
+				</div>
+				<div id="row3" class="nopadding text-center col-sm-12 col-lg-12 col-md-12 col-xs-12">
+					<div id="option9" class="nopadding option text-center col-sm-2 col-lg-2 col-md-2 col-xs-2 col-xs-offset-1 col-md-offset-1 col-lg-offset-1 col-sm-offset-1" onclick="Drawing.getSelectedOption(this.id);">
+					</div>
+					<div id="option10" class="nopadding option text-center col-sm-2 col-lg-2 col-md-2 col-xs-2 col-xs-offset-1 col-md-offset-1 col-lg-offset-1 col-sm-offset-1" onclick="Drawing.getSelectedOption(this.id);">
+					</div>
+					<div id="option11" class="nopadding option text-center col-sm-2 col-lg-2 col-md-2 col-xs-2 col-xs-offset-1 col-md-offset-1 col-lg-offset-1 col-sm-offset-1" onclick="Drawing.getSelectedOption(this.id);">
+					</div>
 				</div>
 			</div>
-		</div>
-	</div>
+			<div id="nextPage" class="nopadding col-xs-1 col-md-1 col-lg-1 col-sm-1 col-sm-offset-11 col-lg-offset-11 col-md-offset-11 col-xs-offset-11">
+				<img id="nextPageButton" class="nopadding col-xs-12 col-md-12 col-lg-12 col-sm-12 img-responsive"  onclick="Drawing.showEndPage();">
+			</div>
+		</div>	
+<script src ="js/DrawingGameScript.js"></script>
+<script src ="js/DrawingGameData.js"></script>
 </body>
 </html>		

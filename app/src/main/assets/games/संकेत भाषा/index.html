@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <title>Equation</title>
+ <meta charset="utf-8"> 
+	 <link rel="stylesheet" href="css/bootstrap.min.css"></link>
+	<link rel="stylesheet" type="text/css" href="css/stylesheet.css"></link>
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/jquery-ui.min.js"></script>
+	<script src="js/jquery.ui.touch-punch.min.js"></script>
+	<script src ="js/EquationScript.js"></script>
+	<script src ="js/EquationData.js"></script>
+</head>
+<body>
+	<div style="background-image:url(css/Preloader_3.gif);" class="se-pre-con col-lg-12 col-md-12 col-xs-12 col-sm-12"></div>
+	<audio id="playSound"></audio>
+	<div id="homeAndLogoDiv" class="col-xs-12 col-md-12 col-lg-12 col-sm-12">
+		<div id="homeButton" class="header nopadding col-xs-1 col-md-1 col-lg-1 col-sm-1" onclick="Equation.callhome();">
+			<img id="homeImage" class="nopadding col-xs-10 col-md-10 col-lg-10 col-sm-10 col-xs-offset-2 col-md-offset-1 col-lg-offset-1 col-sm-offset-1  img-responsive" onclick="AwazChitra.goToHome();">
+		</div>
+				
+		<div id="logo" class="header nopadding col-xs-1 col-md-1 col-lg-1 col-sm-1 col-xs-offset-5 col-md-offset-5 col-lg-offset-5 col-sm-offset-5">
+			<img id="logoImage" class="nopadding img-responsive col-xs-10 col-md-10 col-lg-10 col-sm-10 col-xs-offset-1 col-md-offset-1 col-lg-offset-1 col-sm-offset-1">
+		</div>
+	</div>
+	<div id="coverPage" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+		 <div id="videoDiv" class="nopadding col-xs-10 col-md-10 col-lg-10 col-sm-10 col-xs-offset-1 col-md-offset-1 col-lg-offset-1 col-sm-offset-1">
+			<video id="videoTag" class="nopadding col-xs-10 col-md-10 col-lg-10 col-sm-10 col-xs-offset-1 col-md-offset-1 col-lg-offset-1 col-sm-offset-1" controls></video>
+		</div>
+		<!--<div id="instructionDiv" class="col-xs-4 col-md-4 col-lg-4 col-sm-4 col-xs-offset-4 col-md-offset-4 col-lg-offset-4 col-sm-offset-4">
+			<p id="instruction"></p>
+		</div>
+		-->
+		<div id="playButton" class="toBottom nopadding col-xs-1 col-md-1 col-lg-1 col-sm-1 col-xs-offset-11 col-md-offset-11 col-lg-offset-11 col-sm-offset-11" onclick="Equation.playGame();"> 
+			<img id="play" class="nopadding col-xs-10 col-md-10 col-lg-10 col-sm-10 img-responsive">
+		</div>
+	</div>
+	<div id="gamePage" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+		<div id="numberSystem" class="nopadding col-xs-4 col-md-4 col-lg-4 col-sm-4">
+			<div id="assumption" class="nopadding col-xs-12 col-md-12 col-lg-12 col-sm-12"></div>
+			<div id="numAndSym" class="nopadding col-xs-12 col-md-12 col-lg-12 col-sm-12">
+				<div id="Div1" class="nopadding divBorder col-xs-6 col-md-6 col-lg-6 col-sm-6"></div>
+				
+				<div id="Div2" class="nopadding divBorder col-xs-6 col-md-6 col-lg-6 col-sm-6"></div>
+			</div>
+		</div>
+		<div class="nopadding col-xs-4 col-md-4 col-lg-4 col-sm-4 col-xs-offset-1 col-md-offset-1 col-lg-offset-1 col-sm-offset-1">
+			<div id="questionWord" class="nopadding col-xs-12 col-md-12 col-lg-12 col-sm-12">
+			</div>
+			<div id="question" class="divBorder nopadding col-xs-11 col-md-11 col-lg-11 col-sm-11 ">	
+				<div class="nopadding col-xs-12 col-sm-12 col-md-12 col-lg-12">
+					<div id="firstNo" class="nopadding col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xs-offset-3 col-md-offset-3 col-lg-offset-3 col-sm-offset-3">
+						<img id="firstSym" class="sawal nopadding img-responsive col-xs-12 col-md-12 col-lg-12 col-sm-12">
+					</div>
+					<div id="secondNo" class="nopadding col-xs-3 col-sm-3 col-md-3 col-lg-3">
+						<img id="secondSym" class="sawal nopadding img-responsive col-xs-12 col-md-12 col-lg-12 col-sm-12">
+					</div>
+				</div>
+				<div class="nopadding col-xs-12 col-sm-12 col-md-12 col-lg-12">	
+					<div id="operator" class="sawal nopadding col-xs-2 col-sm-2 col-md-2 col-lg-2 col-xs-offset-1 col-md-offset-1 col-lg-offset-1 col-sm-offset-1">+</div>
+					<div id="thirdNo" class="nopadding col-xs-3 col-sm-3 col-md-3 col-lg-3">
+						<img id="thirdSym" class="sawal nopadding img-responsive col-xs-12 col-md-12 col-lg-12 col-sm-12">
+					</div>
+					<div id="fourthNo" class="nopadding col-xs-3 col-sm-3 col-md-3 col-lg-3">
+						<img id="fourthSym" class="sawal nopadding img-responsive col-xs-12 col-md-12 col-lg-12 col-sm-12">
+					</div>
+				</div>
+				<div id="line1" class="nopadding col-xs-10 col-sm-10 col-md-10 col-lg-10 col-xs-offset-1 col-md-offset-1 col-lg-offset-1 col-sm-offset-1">
+					<img id="lineImg1" class="nopadding img-responsive col-xs-12 col-md-12 col-lg-12 col-sm-12">
+				</div>
+				<div id="questionmarks" class="nopadding col-xs-12 col-sm-12 col-md-12 col-lg-12 col-lg-12">
+					<div class="questionmark nopadding col-xs-2 col-sm-2 col-md-2 col-lg-2 col-xs-offset-4 col-md-offset-4 col-lg-offset-4 col-sm-offset-4">?</div>
+					<div class="questionmark nopadding col-xs-2 col-sm-2 col-md-2 col-lg-2 col-xs-offset-1 col-md-offset-1 col-lg-offset-1 col-sm-offset-1">?</div>
+				</div>
+				<div id="line2" class="nopadding col-xs-10 col-sm-10 col-md-10 col-lg-10 col-xs-offset-1 col-md-offset-1 col-lg-offset-1 col-sm-offset-1">
+					<img id="lineImg2" class="nopadding img-responsive col-xs-12 col-md-12 col-lg-12 col-sm-12">
+				</div>
+			</div>
+		</div>
+		<div class="nopadding col-xs-2 col-md-2 col-lg-2 col-sm-2 col-xs-offset-1 col-md-offset-1 col-lg-offset-1 col-sm-offset-1">
+			<div id="helpDiv" class="nopadding col-xs-6 col-md-6 col-lg-6 col-sm-6 col-xs-offset-6 col-md-offset-6 col-lg-offset-6 col-sm-offset-6">
+				<img id="helpImg" class="nopadding img-responsive col-xs-12 col-md-12 col-lg-12 col-sm-12" onclick="Equation.helpTaken();">
+			</div>	
+			<div id="timerDiv" class=" nopadding col-xs-12 col-md-12 col-lg-12 col-sm-12">
+			</div>
+		</div>
+		<div class="nopadding toBottom col-xs-12 col-sm-12 col-md-12 col-lg-12 col-lg-12">	
+			<div id="answerWord" class="nopadding col-xs-2 col-sm-2 col-md-2 col-lg-2"></div>	
+			<div id="allOption" class="nopadding col-xs-8 col-sm-8 col-md-8 col-lg-8"></div>
+			<div id="nextDiv"class="nopadding col-xs-1 col-sm-1 col-md-1 col-lg-1">
+				<img id="nextImg" class="nopadding img-responsive col-xs-11 col-sm-11 col-md-11 col-lg-11" onclick="Equation.showResult();">
+			</div>
+		</div>
+	</div>
+	<div id="scorePage" class="nopadding col-xs-12 col-sm-12 col-md-12 col-lg-12">
+		<p id="result"></p>
+		<p id="timeTaken"></p>
+		<p id="noOfWrongAttempts"></p>
+		<div id="nextGame" class="toBottom nopadding col-xs-1 col-sm-1 col-md-1 col-lg-1 col-xs-offset-11 col-md-offset-11 col-lg-offset-11 col-sm-offset-11">
+			<img id="nextGameImg" class="nopadding img-responsive col-xs-11 col-sm-11 col-md-11 col-lg-11" onclick="Equation.showNextGame();">
+		</div>
+	</div>	
+</body>
+</html>	

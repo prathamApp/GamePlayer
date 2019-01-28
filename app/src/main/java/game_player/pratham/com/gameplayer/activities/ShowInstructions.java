@@ -1,61 +1,100 @@
 package game_player.pratham.com.gameplayer.activities;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
+import android.content.Context;
 import android.content.Intent;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AppCompatActivity;
+import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.text.Html;
 import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 import game_player.pratham.com.gameplayer.R;
-import game_player.pratham.com.gameplayer.fragments.InstructionFragment;
-import game_player.pratham.com.gameplayer.fragments.TimerForGameSelection;
+import game_player.pratham.com.gameplayer.dialog.AssignGameDialog;
+
 
 public class ShowInstructions extends AppCompatActivity {
-    FragmentManager fragmentManager;
-    FragmentTransaction fragmentTransaction;
+
     ArrayList selectedStudent;
+
+    @BindView(R.id.message)
+    TextView message;
+    AssignGameDialog assignGameDialog;
+
+    MediaPlayer mediaPlayer;
+    Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_instructions);
-        Intent intent=getIntent();
-        selectedStudent= (ArrayList) intent.getSerializableExtra("selectedStudent");
-        fragmentManager = getSupportFragmentManager();
-        fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.add(R.id.fragment_showInstruction,new InstructionFragment());
-        fragmentTransaction.commit();
+        ButterKnife.bind(this);
+        context = this;
+        message.setText(Html.fromHtml(getString(R.string.servey4)));
+        Intent intent = getIntent();
+        selectedStudent = (ArrayList) intent.getSerializableExtra("selectedStudent");
+
     }
 
-    public void showDialog(View view){
-        AlertDialog.Builder builder=new AlertDialog.Builder(this);
-        builder.setMessage(getString(R.string.dilogMsg));
+    @OnClick(R.id.nextBtn)
+    public void showDialog(View view) {
+       /* AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle(getString(R.string.servey5dilogheading));
+        builder.setMessage(getString(R.string.servey5dilogMsg));
         builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
 
+                openNextActivity();
+
             }
         });
-        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();*/
+
+        assignGameDialog = new AssignGameDialog(this, getString(R.string.servey5dilogMsg), getString(R.string.servey5dilogheading));
+        assignGameDialog.show();
+        mediaPlayer = MediaPlayer.create(this, R.raw.second);
+        mediaPlayer.start();
+        Button btn_ok = assignGameDialog.findViewById(R.id.btn_ok);
+        btn_ok.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.fragment_showInstruction,new TimerForGameSelection());
-                fragmentTransaction.commit();
+            public void onClick(View v) {
+                mediaPlayer.release();
+                mediaPlayer = null;
+                openNextActivity();
+                assignGameDialog.dismiss();
             }
         });
-        AlertDialog alertDialog=builder.create();
-        alertDialog.show();
     }
 
-    public void assignGames(View view){
-        Intent intent=new Intent(this,AssignGame.class);
-        intent.putExtra("selectedStudent",selectedStudent);
+    public void openNextActivity() {
+        Intent intent = new Intent(this, GameInfo.class);
+        intent.putExtra("selectedStudent", selectedStudent);
         startActivity(intent);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if (mediaPlayer != null) {
+            if (mediaPlayer.isPlaying())
+                mediaPlayer.pause();
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (mediaPlayer != null) {
+            mediaPlayer.start();
+        }
     }
 }

@@ -12,13 +12,13 @@ import game_player.pratham.com.gameplayer.R;
 public class DownloadOrPlaygame extends AppCompatActivity {
 
     Context context;
-
-    @Override
+   @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_download_or_playgame);
         ButterKnife.bind(this);
         context = DownloadOrPlaygame.this;
+        //textToSpeechCustom=new TextToSpeechCustom(context,0.7f);
     }
 
     @OnClick(R.id.download)

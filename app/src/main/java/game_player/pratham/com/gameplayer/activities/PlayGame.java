@@ -5,12 +5,13 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Spinner;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -19,7 +20,9 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import game_player.pratham.com.gameplayer.R;
+import game_player.pratham.com.gameplayer.customView.CustomSpinner;
 import game_player.pratham.com.gameplayer.database.AppDatabase;
+import game_player.pratham.com.gameplayer.dialog.InstructionDialog;
 import game_player.pratham.com.gameplayer.dialog.SelectStudentDialog;
 import game_player.pratham.com.gameplayer.interfaces.VillageSelectListener;
 import game_player.pratham.com.gameplayer.modalclass.GroupNameID;
@@ -35,11 +38,13 @@ public class PlayGame extends AppCompatActivity implements VillageSelectListener
     /*@BindView(R.id.studentSpinner)
     Spinner studentSpinner;*/
     @BindView(R.id.villageSpinner)
-    Spinner villageSpinner;
+    CustomSpinner villageSpinner;
     @BindView(R.id.groupSpinner)
-    Spinner groupSpinner;
+    CustomSpinner groupSpinner;
     /*@BindView(R.id.btn_next)
     Button btn_next;*/ ArrayList selectedStudent = new ArrayList<>();
+    ArrayList<StudentForSpinner> studentForSpinnersList;
+    MediaPlayer mediaPlayer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -195,18 +200,57 @@ public class PlayGame extends AppCompatActivity implements VillageSelectListener
             //  selectedStudent = list;
             //btn_next.setEnabled(true);
             List<Student> studentList = AppDatabase.getDatabaseInstance(context).getStudentDao().getStudantsByIDs(selectedStudent);
-            ArrayList<StudentForSpinner> studentForSpinnersList = new ArrayList<>();
+            studentForSpinnersList = new ArrayList<>();
             for (Student student : studentList) {
                 studentForSpinnersList.add(new StudentForSpinner(student.getStudentId(), student.getFullName()));
             }
-            Intent intent = new Intent(context, InstructionForServey.class);
-            intent.putExtra("selectedStudent", studentForSpinnersList);
-            startActivity(intent);
+
+            InstructionDialog instructionDialog = new InstructionDialog(this, getResources().getString(R.string.servey2));
+            instructionDialog.show();
+            instructionDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                @Override
+                public void onDismiss(DialogInterface dialog) {
+                    mediaPlayer.stop();
+                    mediaPlayer.release();
+                    villageSpinner.setSelection(0);
+                    groupSpinner.setSelection(0);
+                }
+            });
+            mediaPlayer = MediaPlayer.create(context, R.raw.first);
+            mediaPlayer.start();
+            ImageView imageView = instructionDialog.findViewById(R.id.nextBtn);
+            imageView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mediaPlayer.release();
+                    mediaPlayer = MediaPlayer.create(context, R.raw.first);
+                    Intent intent = new Intent(context, InstructionForServey.class);
+                    intent.putExtra("selectedStudent", studentForSpinnersList);
+                    startActivity(intent);
+                }
+            });
+
         } else {
             // btn_next.setEnabled(false);
             Toast.makeText(context, "Must Be select 2 students", Toast.LENGTH_SHORT).show();
         }
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (mediaPlayer != null) {
+            mediaPlayer.start();
+        }
+    }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if (mediaPlayer != null) {
+            if (mediaPlayer.isPlaying())
+                mediaPlayer.pause();
+        }
+    }
 }
+

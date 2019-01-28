@@ -1,87 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    style="@style/background"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    style="@style/background"
+    android:orientation="vertical"
     tools:context=".activities.InstructionForServey">
 
-    <TextView
-        android:id="@+id/heading"
-        style="@style/heading"
-        android:text="@string/instructionForServey"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
-        android:id="@+id/linearLayout2"
+        android:id="@+id/selectchildLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/heading">
-
-        <TextView
-            android:id="@+id/instructoin1"
-            style="@style/textStyle_instructionForServey"
-            android:text="@string/instruction1" />
-
-        <TextView
-            android:id="@+id/instructoin2"
-            style="@style/textStyle_instructionForServey"
-            android:text="@string/instruction2"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/instruction3"
-            style="@style/textStyle_instructionForServey"
-            android:text="@string/instruction3" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/linearLayout3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_margin="15dp"
+        android:background="@drawable/roundedcorner_border"
+        android:elevation="10dp"
         android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
+        android:paddingBottom="15dp"
+        android:paddingEnd="15dp"
+        android:paddingStart="10dp"
+        android:paddingTop="15dp">
 
         <TextView
             android:id="@+id/txt_leaderName"
-            style="@style/textViewStyle_main_A"
-            android:text="@string/instruction4" />
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_margin="4dp"
+            android:layout_weight="1"
+            android:gravity="right"
+            android:text="@string/instruction4"
+            android:textSize="@dimen/_17sdp" />
 
         <Spinner
             android:id="@+id/spiner_leaderName"
-            android:background="@drawable/gradient_spinner"
-            style="@style/spinnerStyle_main_A" />
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_margin="4dp"
+            android:layout_weight="1"
+            android:background="@drawable/gradient_spinner" />
     </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/selectchildLayout"
+        android:layout_margin="15dp"
+        android:background="@drawable/roundedcorner_border"
+        android:elevation="10dp"
+        android:paddingBottom="15dp"
+        android:paddingEnd="15dp"
+        android:paddingStart="10dp"
+        android:paddingTop="15dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/servey3"
+            android:textSize="@dimen/_17sdp" />
+    </FrameLayout>
 
     <Button
         android:id="@+id/next_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="25dp"
+        android:layout_marginEnd="14dp"
         android:background="@drawable/round_button_normal"
-        android:text="Next"
         android:onClick="openShowInstruction"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.952"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout3"
-        app:layout_constraintVertical_bias="0.26" />
-</android.support.constraint.ConstraintLayout>
+        android:text="Next" />
+</RelativeLayout>

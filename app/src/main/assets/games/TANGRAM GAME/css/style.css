@@ -1,0 +1,107 @@
+html{
+	height:100%;
+}
+body
+{
+	user-select:none;
+	background-position:center;
+	background-attachment:fixed;
+	background-repeat:no-repeat;
+	background-size:100% 100%;
+	overflow:hidden;
+}	
+.se-pre-con {
+	position: fixed;
+	left: 0px;
+	top:150px;
+	width:100%;
+	height: 100px;
+	z-index: 9999;
+	background-repeat: no-repeat;
+	background-position:center;
+}
+.noPadding
+{
+	padding:0 !important;
+}
+#gamePage
+{
+	margin-top:-2vh;
+}
+#videoTag{
+	    margin-top: 5vh;
+	    display:none;
+}
+#leftDiv{
+	height: 82vh;
+	border-radius:3vw;
+}
+.mainDivs{
+	background-position:center;
+	background-repeat:no-repeat;
+	background-size:100% 100%;
+}
+#currentDiv{
+	display:none;
+	height:20vh;
+	margin-top:-20vh;
+	border-radius: 1.5vw;
+	border:0.25vw solid #000000;
+	-moz-box-shadow:    inset 0 0 1.10vw #000000;
+   -webkit-box-shadow: inset 0 0 1.10vw #000000;
+   box-shadow:         inset 0 0 1.10vw #000000;
+}
+#center{
+height:13vh;
+}
+#svgDiv{
+	height:100%;
+}
+.pieces{
+	height:26vh;
+	margin-top: 1vh; 
+}
+
+#timerSpan{
+	font-size:5vw;
+}
+
+#endPage
+{
+	margin-top:15vh;
+	font-size: 3vw;
+}
+#instructionDiv
+{
+	display:none;
+   border-radius: 1vw;
+   font-size: 3.5vw;
+   font-weight: 500;
+   position: fixed;
+   top: 25vh;
+box-shadow: -3px 3px 19px rgb(0, 0, 0);
+}
+#aboutGameDiv
+{
+	border: 1px solid black;
+    border-radius: 1vw;
+    box-shadow: -3px 3px 19px rgb(0, 0, 0);
+    margin-top: 20vh;
+}
+#gameInstructionPage
+{
+	display:none;
+}
+h1
+{
+	text-decoration: underline;
+}
+#paraMsg
+{
+	font-size: 2vw;
+}
+#nextLastPage
+{
+position:fixed;
+bottom:0;
+}

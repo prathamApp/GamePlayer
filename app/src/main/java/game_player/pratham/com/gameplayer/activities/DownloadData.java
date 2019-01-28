@@ -10,7 +10,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.androidnetworking.AndroidNetworking;
@@ -30,6 +29,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import game_player.pratham.com.gameplayer.R;
+import game_player.pratham.com.gameplayer.customView.CustomSpinner;
 import game_player.pratham.com.gameplayer.database.AppDatabase;
 import game_player.pratham.com.gameplayer.dialog.SelectVillageDialog;
 import game_player.pratham.com.gameplayer.interfaces.VillageSelectListener;
@@ -41,10 +41,10 @@ import game_player.pratham.com.gameplayer.utils.Utility;
 
 public class DownloadData extends AppCompatActivity implements VillageSelectListener {
     @BindView(R.id.state)
-    Spinner spinner_state;
+    CustomSpinner spinner_state;
 
     @BindView(R.id.block)
-    Spinner spinner_block;
+    CustomSpinner spinner_block;
 
     Context context;
     String[] statesCodes;
@@ -52,9 +52,10 @@ public class DownloadData extends AppCompatActivity implements VillageSelectList
     List<Student> studentList = new ArrayList<>();
     int count = 0;
     int groupCount = 0;
-    ProgressDialog progressDialogStudent;
+    ProgressDialog progressDialog;
     List<String> VillageIDList = new ArrayList();
     List<Groups> groupList = new ArrayList();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -93,9 +94,14 @@ public class DownloadData extends AppCompatActivity implements VillageSelectList
     }
 
     private void loadBlocks(String url) {
+        progressDialog = new ProgressDialog(context);
+        progressDialog.setMessage("loading  blocks..");
+        progressDialog.setCancelable(false);
+        progressDialog.show();
         AndroidNetworking.get(url).setPriority(Priority.MEDIUM).build().getAsJSONArray(new JSONArrayRequestListener() {
             @Override
             public void onResponse(JSONArray response) {
+                progressDialog.dismiss();
                 villageList.clear();
                 Gson gson = new Gson();
                 Type listType = new TypeToken<ArrayList<Village>>() {
@@ -134,6 +140,8 @@ public class DownloadData extends AppCompatActivity implements VillageSelectList
                             if (!villageName.isEmpty()) {
                                 Dialog villageDialog = new SelectVillageDialog(context, villageName);
                                 villageDialog.show();
+                            } else {
+                                Toast.makeText(context, "No Villages are found", Toast.LENGTH_SHORT).show();
                             }
                         }
                     }
@@ -148,8 +156,10 @@ public class DownloadData extends AppCompatActivity implements VillageSelectList
             @Override
             public void onError(ANError error) {
                 // handle error
+                progressDialog.dismiss();
                 Toast.makeText(context, "No Internet available", Toast.LENGTH_SHORT).show();
                 spinner_block.setSelection(0);
+                spinner_state.setSelection(0);
                 spinner_block.setEnabled(false);
             }
         });
@@ -159,17 +169,22 @@ public class DownloadData extends AppCompatActivity implements VillageSelectList
     public void getSelectedItems(ArrayList<String> villageIDList) {
         studentList.clear();
         count = 0;
-        progressDialogStudent = new ProgressDialog(context);
-        progressDialogStudent.setMessage("loadingStudent..");
-        progressDialogStudent.setCancelable(false);
-        progressDialogStudent.show();
-        VillageIDList.clear();
-        VillageIDList.addAll(villageIDList);
-        //totalSelectedVillages = villageIDList.size();
-        for (String id : villageIDList) {
-            String url = Utility.getProperty("HLpullStudentURL", context);
-            url = url + id;
-            loadStudent(url);
+        if (villageIDList.size() > 0) {
+            progressDialog = new ProgressDialog(context);
+            progressDialog.setMessage("loadingStudent..");
+            progressDialog.setCancelable(false);
+            progressDialog.show();
+            VillageIDList.clear();
+            VillageIDList.addAll(villageIDList);
+            //totalSelectedVillages = villageIDList.size();
+
+            for (String id : villageIDList) {
+                String url = Utility.getProperty("HLpullStudentURL", context);
+                url = url + id;
+                loadStudent(url);
+            }
+        } else {
+            Toast.makeText(context, "Villages doent selected", Toast.LENGTH_SHORT).show();
         }
 
     }
@@ -195,7 +210,7 @@ public class DownloadData extends AppCompatActivity implements VillageSelectList
             @Override
             public void onError(ANError error) {
                 studentList.clear();
-                progressDialogStudent.dismiss();
+                progressDialog.dismiss();
                 Toast.makeText(context, "no Internet available", Toast.LENGTH_SHORT).show();
                 // dismissDialog();
             }
@@ -234,7 +249,7 @@ public class DownloadData extends AppCompatActivity implements VillageSelectList
             @Override
             public void onError(ANError error) {
                 studentList.clear();
-                progressDialogStudent.dismiss();
+                progressDialog.dismiss();
                 Toast.makeText(context, "no Internet available", Toast.LENGTH_SHORT).show();
                 // dismissDialog();
             }
@@ -242,7 +257,7 @@ public class DownloadData extends AppCompatActivity implements VillageSelectList
     }
 
     public void dismissDialog() {
-        if (groupCount >=  VillageIDList.size()) {
+        if (groupCount >= VillageIDList.size()) {
 
             //deleting previous data
             AppDatabase.getDatabaseInstance(context).getStudentDao().deleteAllStudent();
@@ -254,7 +269,7 @@ public class DownloadData extends AppCompatActivity implements VillageSelectList
             AppDatabase.getDatabaseInstance(context).getVillageDao().insertAllVillages(villageList);
             AppDatabase.getDatabaseInstance(context).getGroupDao().insertAllGroups(groupList);
 
-            progressDialogStudent.dismiss();
+            progressDialog.dismiss();
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setCancelable(false);
             builder.setMessage("Downloaded Successfully");

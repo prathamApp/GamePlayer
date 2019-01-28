@@ -1,54 +1,70 @@
 <html>
 <head>
-	<title>Jigsaw Game</title>
+	<title>find The Object</title> </title>
 	<meta charset="utf-8">
-	<meta name="viewport" content="device-width,initial-scale=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/stylesheet.css">
 	<script src="js/jquery.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/FindTheObjectScript.js"></script>
+	<script src="js/FindTheObjectData.js"></script>
 	<script src="js/jquery-ui.min.js"></script>
 	<script src="js/jquery.ui.touch-punch.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
-	<script src="js/jigsawDemoScript.js"></script>
-	<script src="js/utility.js"></script>
-	<script src="js/jigsawDemoData.js"></script>
-	<link rel="stylesheet" href="css/jigsawDemoScript.css">
-	<link rel="stylesheet" href="css/animate.css">
 </head>
 <body>
 	<div style="background-image:url(css/Preloader_3.gif);" class="se-pre-con col-lg-12 col-md-12 col-xs-12 col-sm-12"></div>
-	<div class="col-sm-12 col-lg-12 col-md-12 col-xs-12 noPadding">
-		<div id="homeDiv" class="col-lg-1 col-md-1 col-xs-1 col-sm-1 noPadding">
-			<img id="home" class="img-responsive col-sm-10 col-lg-10 col-md-10 col-xs-10 noPadding" onClick="location.reload();">
-		</div>
-		<div id="timerDiv" class="col-sm-2 col-lg-2 col-md-2 col-xs-2 col-sm-offset-4 col-lg-offset-4 col-md-offset-4 col-xs-offset-4 noPadding">
-			<span id="timer" class="col-sm-12 col-lg-12 col-md-12 col-xs-12"></span>
-		</div>
-		<div id="logoDiv" class="col-sm-1 col-lg-1 col-md-1 col-xs-1 col-sm-offset-4 col-lg-offset-4 col-md-offset-4 col-xs-offset-4 noPadding">
-			<img id="logo"  class="img-responsive col-sm-10 col-lg-10 col-md-10 col-xs-10 noPadding">
-		</div>
-	</div>
-	<div id="coverpage" class="col-lg-12 col-md-12 col-xs-12 col-sm-12 noPadding">
-		<div id="playGame" class="noPadding col-sm-offset-11 col-lg-offset-11 col-md-offset-11 col-xs-offset-11 col-lg-1 col-md-1 col-xs-1 col-sm-1" style="position:fixed;bottom:0">
-			<img id="play"  class="img-responsive col-sm-10 col-lg-10 col-md-10 col-xs-10 noPadding" onClick="Jigsaw.playGame()">
-		</div>
-	</div>
-	<div id="gamepage" class="col-lg-12 col-md-12 col-xs-12 col-sm-12 noPadding">
-		<div id="refImgDiv" class="col-lg-5 col-md-5 col-xs-5 col-sm-5 noPadding animated fadeInDown">
-			<canvas id="myCanvas1" class="refImg col-lg-12 col-md-12 col-xs-12 col-sm-12 noPadding"></canvas>
-		</div>
-		<div id="jigsawDiv" class="col-lg-5 col-md-5 col-xs-5 col-sm-5 col-sm-offset-1 col-lg-offset-1 col-md-offset-1 col-xs-offset-1 noPadding animated fadeInDown"></div>
-	</div>
-	<div id="widgetDiv" class="noPadding col-lg-12 col-md-12 col-xs-12 col-sm-12" style="position:fixed;bottom:0">
-		<div id="nextDiv" class="noPadding col-sm-offset-11 col-lg-offset-11 col-md-offset-11 col-xs-offset-11 col-lg-1 col-md-1 col-xs-1 col-sm-1">
-			<img id="nextImg"  class="img-responsive col-sm-10 col-lg-10 col-md-10 col-xs-10 noPadding" onClick="Jigsaw.endGame()">
-		</div>
-	</div>
-	<div id="endPage" class="noPadding col-sm-12 col-lg-12 col-md-12 col-xs-12">
-		<div id="puzzleComplete" class="noPadding text-center fontCls col-sm-4 col-lg-4 col-md-4 col-xs-4 col-sm-offset-4 col-lg-offset-4 col-md-offset-4 col-xs-offset-4"></div>
-       <div id="wrong" class="noPadding text-center fontCls col-sm-6 col-lg-6 col-md-6 col-xs-6 col-sm-offset-3 col-lg-offset-3 col-md-offset-3 col-xs-offset-3"></div>
-       <div id="time" class="noPadding text-center fontCls col-sm-6 col-lg-6 col-md-6 col-xs-6 col-sm-offset-3 col-lg-offset-3 col-md-offset-3 col-xs-offset-3">
-       </div>
-   </div>
 	<audio id="playSound"></audio>
+	<div id='header' class="noPadding col-sm-12 col-lg-12 col-md-12 col-xs-12">
+		
+		<div id="clockDiv" class="noPadding col-sm-2 col-lg-2 col-md-2 col-xs-2 col-sm-offset-9 col-lg-offset-9 col-md-offset-9 col-xs-offset-9">
+			<img id="clockImg" class="noPadding img-responsive col-sm-3 col-lg-3 col-md-3 col-xs-3">
+			<span id="timeId" class="noPadding"></span>
+			<span id="secId" class="noPadding ">s</span>
+		</div>
+		<!-- <div id="logoDiv" class="noPadding col-sm-1 col-lg-1 col-md-1 col-xs-1 ">
+			<img id="logo" class="noPadding img-responsive col-sm-8 col-lg-8 col-md-8 col-xs-8">
+		</div> -->
+	</div>
+	<div id="coverpage" class="noPadding col-sm-12 col-lg-12 col-md-12 col-xs-12">
+<!--  		<div id="instructionDiv" class=" col-xs-6 col-md-6 col-lg-6 col-sm-6 col-xs-offset-3 col-md-offset-3 col-lg-offset-3 col-sm-offset-3"></div>
+ --> 	<div id="videoDiv" class="noPadding col-xs-10 col-md-10 col-lg-10 col-sm-10 col-xs-offset-1 col-md-offset-1 col-lg-offset-1 col-sm-offset-1">
+			<video id="videoTag" class="noPadding col-xs-12 col-md-12 col-lg-12 col-sm-12" controls></video>
+		</div>
+		<div id="playGame" class="noPadding col-sm-1 col-lg-1 col-md-1 col-xs-1 col-sm-offset-11 col-lg-offset-11 col-md-offset-11 col-xs-offset-11">
+			<img id="play" class="noPadding img-responsive col-sm-10 col-lg-10 col-md-10 col-xs-10" onclick="FindIt.playGame();">
+		</div>
+	</div>
+	<div id="gamepage" class="noPadding col-sm-12 col-lg-12 col-md-12 col-xs-12">
+		<div id="mainImgDiv" class="noPadding col-sm-8 col-lg-8 col-md-8 col-xs-8 ">
+		</div>
+		<div id="subDiv" class=" noPadding col-sm-3 col-lg-3 col-md-3 col-xs-3 col-xs-offset-1 col-md-offset-1 col-lg-offset-1 col-sm-offset-1">
+			<div id="subImageDiv1" class=" noPadding col-sm-6 col-lg-6 col-md-6 col-xs-6"></div>
+			<div id="subImageDiv2" class=" noPadding col-sm-6 col-lg-6 col-md-6 col-xs-6"></div>
+		</div>
+		<div id="helpDiv" class="noPadding col-sm-1 col-lg-1 col-md-1 col-xs-1 col-sm-offset-10 col-lg-offset-10 col-md-offset-10 col-xs-offset-10">
+			<img id="helpImg" class="noPadding img-responsive col-sm-9 col-lg-9 col-md-9 col-xs-9 " onclick="FindIt.helpPage();">
+		</div>
+		<div id="nextDiv" class="noPadding col-sm-1 col-lg-1 col-md-1 col-xs-1 col-sm-offset-11 col-lg-offset-11 col-md-offset-11 col-xs-offset-11">
+			<img id="next" class="noPadding img-responsive col-sm-9 col-lg-9 col-md-9 col-xs-9 " onclick="FindIt.showLastPage();">
+		</div>
+	</div>
+ <div id="endPage" class="noPadding col-sm-12 col-lg-12 col-md-12 col-xs-12">
+	<div  class="noPadding col-sm-12 col-lg-12 col-md-12 col-xs-12">
+		<div id="puzzleComplete" class="noPadding text-center fontCls col-sm-4 col-lg-4 col-md-4 col-xs-4 col-sm-offset-4 col-lg-offset-4 col-md-offset-4 col-xs-offset-4"></div>
+	</div>
+	<div  class="noPadding col-sm-12 col-lg-12 col-md-12 col-xs-12">
+		<div id="wrong" class="noPadding text-center fontCls col-sm-4 col-lg-4 col-md-4 col-xs-4 col-sm-offset-4 col-lg-offset-4 col-md-offset-4 col-xs-offset-4"></div>
+	</div>
+	<div  class="noPadding col-sm-12 col-lg-12 col-md-12 col-xs-12">
+		<div id="correct" class="noPadding text-center fontCls col-sm-4 col-lg-4 col-md-4 col-xs-4 col-sm-offset-4 col-lg-offset-4 col-md-offset-4 col-xs-offset-4"></div>
+	</div>
+	<div  class="noPadding col-sm-12 col-lg-12 col-md-12 col-xs-12">
+		<div id="time" class="noPadding text-center fontCls col-sm-4 col-lg-4 col-md-4 col-xs-4 col-sm-offset-4 col-lg-offset-4 col-md-offset-4 col-xs-offset-4"></div>
+	</div>
+	<div id="nextGameDiv" class="noPadding col-sm-1 col-lg-1 col-md-1 col-xs-1 col-sm-offset-11 col-lg-offset-11 col-md-offset-11 col-xs-offset-11">
+		<img id="nextGameImg" class="noPadding img-responsive col-sm-9 col-lg-9 col-md-9 col-xs-9 " onclick="FindIt.nextGame();">
+	</div>	
+</div> 
 </body>
 </html>

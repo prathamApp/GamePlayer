@@ -1,0 +1,237 @@
+.se-pre-con {
+	position: fixed;
+	left: 0px;
+	top:150px;
+	width:100%;
+	height: 100px;
+	z-index: 9999;
+	background-repeat: no-repeat;
+	background-position:center;
+}
+
+.nopadding
+{
+	padding:0 !important;
+}
+.toBottom
+{
+	position:fixed;
+	bottom:0;
+}
+
+html{
+	height:100%;
+}
+body
+{
+	user-select:none; 
+	background-position:center;
+	background-attachment:fixed;
+	background-repeat:no-repeat;
+	background-size:100% 100%;
+/*
+	overflow:hidden;
+*/
+
+
+}	
+#gamePage
+{
+	margin-top:3vh;
+}
+#homeAndLogoDiv
+{
+	display:none;
+}
+
+.header
+{
+	margin-top:1vh;
+}
+.numbers
+{
+	text-align:center;
+	font-size:3vw;
+	color: black;
+	width:4vw;
+	font-weight:bold;
+}
+
+#line
+{
+	margin-top:-3vh;
+}
+#operator
+{
+	font-size:4vw;
+	color: black;
+}
+#questionmarks
+{
+	margin-top:-5vh;
+}
+#allOption
+{
+	margin-top:2vh;
+}
+.optionDivs
+{
+	height:15vh;
+	border:1px solid black;
+	border-radius:5px;
+	background-color:#DCDCDC;
+	border-radius: 1vw;
+	box-shadow: 0.6vh 0.6vh black;
+}
+.optionDivs:active
+{
+	box-shadow: 0.4vh 0.4vh #666;
+	transform: translateY(4px);
+}
+
+#numberSystem
+{
+	border:2px solid black;
+	background-color:#DCDCDC;
+
+	
+}
+#timerDiv
+{
+	text-align:center;
+	font-size:5vw;
+	color: black;
+	margin-top: 30vh;
+	right: 1vw;
+	border:2px solid black;
+	border-radius: 1vw;
+	box-shadow: 0.6vh 0.6vh black;
+}
+#instruction
+{
+	
+	font-size:2vw;
+	margin-top:5vh;
+	text-indent:5vw;
+	color:black;
+}
+
+#instructionDiv
+{
+	background-color:white;
+	border:2px solid black;
+	border-radius:5vh;
+	height:30vh;
+	margin-top:10vh;
+}
+
+#assumption
+{
+	text-align: center;
+    font-size: 4vw;
+    color: black;
+    font-weight: bold;
+}
+#questionWord
+{
+    font-size: 5vw;
+    margin-top: 2vh;
+    font-weight: bold;
+    color: black;
+}
+#answerWord
+{
+	text-align: center;
+    font-size: 5vw;
+    font-weight: bold;
+    color: black;
+    margin-top: 10vh;
+}
+.optionLetters
+{
+	text-align:center;
+	font-size:3vw;
+	font-weight: bold;
+	color:black;
+}
+#nextDiv
+{
+	 visibility:hidden;
+	 margin-top:11vh;
+	 margin-left:6.1vw;
+}
+
+#bottomDiv
+{
+	z-index:-1;
+}
+
+#result
+{
+	text-align:center;
+	font-size:4vw;
+	color:black;
+	font-family:italic;
+}
+#timeTaken,#noOfWrongAttempts
+{
+	text-align:center;
+	font-size:3vw;
+	font-family:italic;
+	color: black;
+}
+.symbols
+{
+	text-align:center;
+	font-size:3vw;
+	color: black;
+	width:4vw;
+	margin-top:3vh;
+	font-weight:bold;
+}
+.images
+{
+	margin-top:3vh;
+}
+.divBorder
+{
+	border:4px solid black;
+	
+}
+
+.numbers,.symbols,.images
+{
+	margin-top:1vh;
+}
+.questionmark
+{
+	text-align:center;
+	font-size:3vw;
+	color: black;
+	width:4vw;
+	margin-top:2vh;
+	font-weight:bold;
+}
+.sawal
+{
+	height:13vh;
+}
+#line2
+{
+	margin-bottom:2vh;
+}
+#scorePage
+{
+	margin-top: 20vh;
+}
+
+#videoTag
+{
+	margin-top:5vh;
+	border: 2px solid black;
+}
+
+#gamePage,#helpDiv
+{
+	display:none;
+}

@@ -1,29 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal"
     android:padding="40dp"
-    tools:context=".activities.DownloadOrPlaygame">
+    tools:context="game_player.pratham.com.gameplayer.activities.DownloadOrPlaygame">
 
-    <Button
-        android:id="@+id/download"
+    <LinearLayout
+        android:id="@+id/downloadblock"
         android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:textSize="25sp"
+        android:layout_height="100dp"
         android:background="@drawable/ripple_efferct"
-        android:layout_margin="10dp"
-        android:text="Download" />
+        android:elevation="10dp"
+        android:layout_margin="15dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/playblock"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-    <Button
-        android:id="@+id/play"
+        <TextView
+            android:id="@+id/download"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="1dp"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:drawableTop="@drawable/cloud_download"
+            android:background="@drawable/ripple_efferct"
+            android:baselineAligned="false"
+            android:elevation="0dp"
+            android:text="Download"
+            android:textSize="25sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/playblock"
         android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:textSize="25sp"
+        android:layout_height="100dp"
+        android:layout_margin="15dp"
+        android:elevation="10dp"
         android:background="@drawable/ripple_efferct"
-        android:layout_margin="10dp"
-        android:text="Play game" />
-</LinearLayout>
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/downloadblock"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/play"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:drawableTop="@drawable/games"
+            android:background="@drawable/ripple_efferct"
+            android:elevation="0dp"
+            android:text="Play Game"
+            android:textSize="25sp" />
+    </LinearLayout>
+</android.support.constraint.ConstraintLayout>

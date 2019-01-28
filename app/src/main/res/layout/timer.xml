@@ -36,12 +36,12 @@
     </RelativeLayout>
 <Button
     android:id="@+id/ok"
-    android:layout_width="match_parent"
+    android:layout_width="300dp"
     android:layout_height="wrap_content"
     android:layout_alignParentBottom="true"
     android:onClick="assignGames"
+    android:layout_centerHorizontal="true"
     android:background="@drawable/round_button_normal"
-    android:enabled="false"
     android:text="ok"/>
 
 </RelativeLayout>

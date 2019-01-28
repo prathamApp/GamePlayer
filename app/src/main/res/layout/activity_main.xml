@@ -23,9 +23,9 @@
             android:id="@+id/linearLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
             android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -59,7 +59,7 @@
                     style="@style/textViewStyle_main_A"
                     android:text="@string/villageName" />
 
-                <android.support.v7.widget.AppCompatSpinner
+                <game_player.pratham.com.gameplayer.customView.CustomSpinner
                     android:id="@+id/villageSpinner"
                     style="@style/spinnerStyle_main_A" />
             </LinearLayout>
@@ -74,45 +74,45 @@
                     style="@style/textViewStyle_main_A"
                     android:text="@string/groupCount" />
 
-                <android.support.v7.widget.AppCompatSpinner
+                <game_player.pratham.com.gameplayer.customView.CustomSpinner
                     android:id="@+id/groupSpinner"
                     style="@style/spinnerStyle_main_A" />
             </LinearLayout>
 
-           <!-- <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="horizontal">
+            <!-- <LinearLayout
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:layout_weight="1"
+                 android:orientation="horizontal">
 
-                <TextView
-                    style="@style/textViewStyle_main_A"
-                    android:text="@string/studentName" />
+                 <TextView
+                     style="@style/textViewStyle_main_A"
+                     android:text="@string/studentName" />
 
-                <android.support.v7.widget.AppCompatSpinner
-                    android:id="@+id/studentSpinner"
-                    style="@style/spinnerStyle_main_A" />
-            </LinearLayout>-->
+                 <android.support.v7.widget.AppCompatSpinner
+                     android:id="@+id/studentSpinner"
+                     style="@style/spinnerStyle_main_A" />
+             </LinearLayout>-->
         </LinearLayout>
 
-<!--        <Button
-            android:id="@+id/btn_next"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
-            android:background="@drawable/round_button_normal"
-            android:enabled="false"
-            android:onClick="nextActivity"
-            android:text="Next"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.983"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-            app:layout_constraintVertical_bias="0.807" />-->
+        <!--        <Button
+                    android:id="@+id/btn_next"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:background="@drawable/round_button_normal"
+                    android:enabled="false"
+                    android:onClick="nextActivity"
+                    android:text="Next"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.983"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+                    app:layout_constraintVertical_bias="0.807" />-->
 
 
     </android.support.constraint.ConstraintLayout>

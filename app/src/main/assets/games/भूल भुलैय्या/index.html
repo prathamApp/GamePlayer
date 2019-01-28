@@ -1,94 +1,87 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-  <title>DrawingGame</title>
- <meta charset="utf-8"> 
-	 <link rel="stylesheet" href="css/bootstrap.min.css"></link>
-	<link rel="stylesheet" href="css/animate.css"></link>
-	<link rel="stylesheet" href="css/animations.css"></link>
-	<link rel="stylesheet" type="text/css" href="css/style.css"></link>
-	<link rel="stylesheet" type="text/css" href="css/jquery-ui.css"></link>
-	<script type="text/javascript" src="js/jquery.min.js"></script>
-    <script type="text/javascript" src="js/jquery-ui.min.js"></script>
-    <script src ="js/bootstrap.min.js"></script>
-	<script src="js/jquery.ui.touch-punch.min.js"></script>
-	<script src ="js/utils.js"></script>
-	<script src ="js/sketch.js"></script>
-</head>
-<body>
-<div style="background-image:url(css/Preloader_3.gif);" class="se-pre-con col-lg-12 col-md-12 col-xs-12 col-sm-12"></div>
-	<audio id="playSound"></audio>
-		<div id="homeAndLogoDiv" class="nopadding col-xs-12 col-md-12 col-lg-12 col-sm-12">
-			<!-- <div id="homeButton" class="nopadding col-xs-1 col-md-1 col-lg-1 col-sm-1">
-				<img class="nopadding img-responsive col-xs-10 col-md-10 col-lg-10 col-sm-10 col-xs-offset-2 col-md-offset-2 col-lg-offset-2 col-sm-offset-2" id="homeImage" onclick="Drawing.goToHome();">
-			</div> -->
-			<div id="clockDiv" class="nopadding col-sm-3 col-lg-3 col-md-3 col-xs-3">
-				<img id="clockImage" class="nopadding img-responsive col-sm-2 col-lg-2 col-md-2 col-xs-2">
-				<span id="timerSpan" class="nopadding"></span>
-				<span id="secondsSpan" class="nopadding"></span>
+      <title>Bhool Bhulaiya</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css"></link>
+    <link rel="stylesheet" href="css/default.css">
+    <meta charset="UTF-8">
+    <script src=" js/jquery.min.js"></script>
+    <script src=" js/jquery-ui.min.js"></script>
+    <script src=" js/jquery.ui.touch-punch.min.js"></script>
+    <script src=" js/bootstrap.min.js"></script>
+    <script src="js/default.js"></script>
+    <script src="js/mazeData.js"></script>
+  </head>
+  <body onload="onLoad();">
+      <audio id="playSound"></audio>
+    <div id="homeAndLogoDiv" class="noPadding col-sm-12 col-lg-12 col-md-12 col-xs-12">
+        <div id="homeDiv" class="col-lg-1 col-md-1 col-xs-1 col-sm-1 noPadding">
+        <img id="home" class="img-responsive col-sm-10 col-lg-10 col-md-10 col-xs-10 noPadding" onClick="location.reload();">
+        </div>
+        <div id="timerDiv" class="col-sm-3 col-lg-3 col-md-3 col-xs-3 noPadding">
+          <span id='timerSpan'></span>
+        </div>
+        <div id="logoDiv" class="col-sm-1 col-lg-1 col-md-1 col-xs-1 col-sm-offset-3 col-lg-offset-3 col-md-offset-3 col-xs-offset-3 noPadding">
+        <img id="logo"  class="img-responsive col-sm-10 col-lg-10 col-md-10 col-xs-10 noPadding">
+        </div>
+    </div>
+    <div id="coverPage" class="noPadding col-xs-12 col-md-12 col-lg-12 col-sm-12">
+      <div id="videoDiv" class="noPadding col-xs-10 col-md-10 col-lg-10 col-sm-10 col-xs-offset-1 col-md-offset-1 col-lg-offset-1 col-sm-offset-1">
+        <video id="videoTag" class="noPadding col-xs-11 col-md-11 col-lg-11 col-sm-11" controls></video>
+      </div>
+      <div id="instructionDiv" class="col-xs-6 col-md-6 col-lg-6 col-sm-6 col-xs-offset-3 col-md-offset-3 col-lg-offset-3 col-sm-offset-3"></div>
+      <div id="playButton" class="noPadding col-sm-1 col-lg-1 col-md-1 col-xs-1 col-sm-offset-11 col-lg-offset-11 col-md-offset-11 col-xs-offset-11" style="position:fixed;bottom:0">
+        <img class="noPadding img-responsive col-xs-12 col-md-12 col-lg-12 col-sm-12 " id="playImg" onclick="" style="padding:0px;">
+      </div>
+    </div>
+    <div id="gamePage" class="noPadding col-sm-12 col-lg-12 col-md-12 col-xs-12">
+     
+
+
+         <span id="start" class="msgs">शुरू</span>
+      <div id="canvasDiv" class="noPadding col-xs-4 col-sm-4 col-lg-4 col-md-4">
+        <canvas id="mainForm"></canvas> 
+      </div>
+       <div id="navigationDiv" class="noPadding col-xs-3 col-sm-3 col-lg-3 col-md-3">
+        <div id="up"  data=38 onclick="" class="navigation noPadding col-xs-2 col-sm-2 col-mg-2 col-md-2 col-xs-offset-5 col-sm-offset-5 col-md-offset-5 col-lg-offset-5 ">
+         <img id="upImg" class="noPadding img-responsive navigationCls col-lg-12 col-md-12 col-xs-12 col-sm-12" src="">
+        </div>
+        <div class="noPadding col-xs-12 col-sm-12 col-mg-12 col-md-12">
+        <div id="left" data=37 class="navigation noPadding col-xs-2 col-sm-2 col-mg-2 col-md-2 col-xs-offset-2 col-sm-offset-2 col-md-offset-2 col-lg-offset-2"  onclick="">
+        <img  id="leftImg" class="noPadding img-responsive navigationCls col-lg-12 col-md-12 col-xs-12 col-sm-12" src="">
+        </div>
+        <div id="right" data=39 class="navigation noPadding col-xs-2 col-sm-2 col-mg-2 col-md-2 col-xs-offset-4 col-sm-offset-4 col-md-offset-4 col-lg-offset-4" onclick="" >
+        <img id="rightImg" class="noPadding img-responsive navigationCls col-lg-12 col-md-12 col-xs-12 col-sm-12" src="" >
+        </div>
+        </div>
+        <div id="down" data=40 class="navigation noPadding col-xs-2 col-sm-2 col-mg-2 col-md-2 col-xs-offset-5 col-sm-offset-5 col-md-offset-5 col-lg-offset-5 "  onclick="">
+        <img id="downImg" class="noPadding img-responsive navigationCls col-lg-12 col-md-12 col-xs-12 col-sm-12" src="">
+        </div>
+      </div>
+        <span id="end" class="msgs">ख़त्म</span>
+        <!-- <div id="nextDiv" class="col-lg-1 col-md-1 col-xs-1 col-sm-1 col-sm-offset-11 col-lg-offset-11 col-md-offset-11 col-xs-offset-11 noPadding">
+        <img id="next" class="img-responsive col-sm-10 col-lg-10 col-md-10 col-xs-10 noPadding" onClick="">
+      </div> -->
+		  <div id="widgetDiv" class="noPadding col-lg-12 col-md-12 col-xs-12 col-sm-12" style="position:fixed;bottom:0">
+			<div id="helpDiv" class="noPadding col-lg-1 col-md-1 col-xs-1 col-sm-1">
+				<img id="helpImg"  class="img-responsive col-sm-10 col-lg-10 col-md-10 col-xs-10 noPadding" onClick="helpTaken()">
 			</div>
-			<div class="nopadding col-xs-1 col-md-1 col-lg-1 col-sm-1 col-xs-offset-8 col-md-offset-8 col-lg-offset-8 col-sm-offset-8">
-				<img class="nopadding img-responsive col-xs-10 col-md-10 col-lg-10 col-sm-10 col-xs-offset-1 col-md-offset-1 col-lg-offset-1 col-sm-offset-1" id="logoImage" >
-			</div> 
+			<div id="nextDiv" class="noPadding col-sm-offset-10 col-lg-offset-10 col-md-offset-10 col-xs-offset-10 col-lg-1 col-md-1 col-xs-1 col-sm-1">
+				<img id="next"  class="img-responsive col-sm-10 col-lg-10 col-md-10 col-xs-10 noPadding" onClick="showLastPage()">
+			</div>
 		</div>
-		<div id="coverPage" class="col-xs-12 col-md-12 col-lg-12 col-sm-12">
-			<div id="instructionDiv" class="col-xs-6 col-md-6 col-lg-6 col-sm-6 col-xs-offset-3 col-md-offset-3 col-lg-offset-3 col-sm-offset-3"></div>
-			<div id="playButton" class="col-xs-1 col-md-1 col-lg-1 col-sm-1 col-xs-offset-5 col-md-offset-5 col-lg-offset-5 col-sm-offset-5" style="position:fixed;bottom:0">
-				<img class="nopadding img-responsive col-xs-12 col-md-12 col-lg-12 col-sm-12 " id="play" onclick="Drawing.playGame();" style="padding:0px;">
-			</div>
+    </div>
+	
+    <div id="endPage" class="noPadding col-sm-12 col-lg-12 col-md-12 col-xs-12">
+      <div id="status" class="noPadding text-center fontCls col-sm-6 col-lg-6 col-md-6 col-xs-6 col-sm-offset-3 col-lg-offset-3 col-md-offset-3 col-xs-offset-3"></div>
+        <div id="wrong" class="noPadding text-center fontCls col-sm-6 col-lg-6 col-md-6 col-xs-6 col-sm-offset-3 col-lg-offset-3 col-md-offset-3 col-xs-offset-3"></div>
+        <div id="correct" class="noPadding text-center fontCls col-sm-6 col-lg-6 col-md-6 col-xs-6 col-sm-offset-3 col-lg-offset-3 col-md-offset-3 col-xs-offset-3">
+        </div>
+        <div id="time" class="noPadding text-center fontCls col-sm-6 col-lg-6 col-md-6 col-xs-6 col-sm-offset-3 col-lg-offset-3 col-md-offset-3 col-xs-offset-3">
+        </div>
+		<div id="nextLastPage" class="noPadding col-sm-offset-11 col-lg-offset-11 col-md-offset-11 col-xs-offset-11 col-lg-1 col-md-1 col-xs-1 col-sm-1">
+			<img id="nextImg"  class="img-responsive col-sm-10 col-lg-10 col-md-10 col-xs-10 noPadding"  onClick="playNextGameJS()">
 		</div>
-		<div id="gamePage" class="nopadding col-sm-12 col-md-12 col-lg-12 col-xs-12">
-			<div id="paletteSection" class="col-sm-1 col-xs-1 col-md-1 col-lg-1">
-				<div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
-					<img class="nopadding img-responsive col-sm-12 col-xs-12 col-md-12 col-lg-12" id="eraser">
-				</div>
-				 <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
-					<img id="clearCanvas" class="img-responsive col-sm-10 col-xs-12 col-md-12 col-lg-12"  style="padding:0px;">
-				</div>
-	    	 	<!--<div id="colorPalette" class="nopadding col-sm-12 col-xs-12 col-md-12 col-lg-12">
-	    	 	<div id="selected" class="nopadding col-sm-12 col-xs-12 col-md-12 col-lg-12">
-	    	 		<div id="selectedColor" class="nopadding selectedColorHeight col-sm-6 col-xs-6 col-md-6 col-lg-6 col-sm-offset-3 col-xs-offset-3 col-lg-offset-3 col-md-offset-3" style="background-color:#000000">
-	    	 		</div>
-				</div>
-	    	 	 <div id="colors" class="nopadding col-sm-12 col-xs-12 col-md-12 col-lg-12">
-	    	 		<div class="nopadding colorHeight" style="background-color:#da251d;"></div>
-	    	 		<div class="nopadding colorHeight" style="background-color:#8f5444;"></div>
-	    	 		<div class="nopadding colorHeight" style="background-color:#e77817;"></div>
-	    	 		<div class="nopadding colorHeight" style="background-color:#f19abe;"></div>
-	    	 		<div class="nopadding colorHeight" style="background-color:#f8c300;"></div>
-	    	 		<div class="nopadding colorHeight" style="background-color:#fff974;"></div>
-	    	 		<div class="nopadding colorHeight" style="background-color:#84c225;"></div>
-	    	 		<div class="nopadding colorHeight" style="background-color:#00923f;"></div>
-	    	 		<div class="nopadding colorHeight" style="background-color:#b1c5f0;"></div>
-	    	 		<div class="nopadding colorHeight" style="background-color:#0288d1;"></div>
-	    	 		<div class="nopadding colorHeight" style="background-color:#ab47bc;"></div>
-	    	 		<div class="nopadding colorHeight" style="background-color:#5e35b1;"></div>
-	    	 		<div class="nopadding colorHeight" style="background-color:#000000;"></div>
-	    	 		<div class="nopadding colorHeight" style="background-color:#ffffff;"></div>
-	    	 	</div> 
-	    	 	</div>-->
-	    	 </div>
-			<div class="nopadding col-sm-4 col-md-4 col-lg-4 col-xs-4 col-xs-offset-1 col-md-offset-1 col-lg-offset-1 col-sm-offset-1">
-				<canvas id="Canvas" width="700" height="400">
-				</canvas>
-				<!-- <canvas id="Canvasdraw" width="800" height="350">
-				</canvas> -->
-			</div> 
-			 <div id="bottomDiv" class="col-sm-12 col-md-12 col-lg-12 col-xs-12">
-				<div id="nextDiv" class="nopadding col-xs-1 col-md-1 col-lg-1 col-sm-1 col-sm-offset-11 col-lg-offset-11 col-md-offset-11 col-xs-offset-11">
-					<img id="nextButton" class="nopadding col-xs-12 col-md-12 col-lg-12 col-sm-12 img-responsive"  onclick="Drawing.showEndPage();">
-				</div>
-			 </div>
-		</div>
-		<div id="endPage" class="noPadding col-sm-12 col-lg-12 col-md-12 col-xs-12">
-			<div  class="noPadding col-sm-12 col-lg-12 col-md-12 col-xs-12">
-			<div id="strokes" class="noPadding text-center fontCls col-sm-4 col-lg-4 col-md-4 col-xs-4 col-sm-offset-4 col-lg-offset-4 col-md-offset-4 col-xs-offset-4"></div>
-			</div>
-			<div  class="noPadding col-sm-12 col-lg-12 col-md-12 col-xs-12">
-			<div id="time" class="noPadding text-center fontCls col-sm-4 col-lg-4 col-md-4 col-xs-4 col-sm-offset-4 col-lg-offset-4 col-md-offset-4 col-xs-offset-4"></div>
-			</div>
-		</div>	
-<script src ="js/DrawingGameScript.js"></script>
-<script src ="js/DrawingGameData.js"></script>
-</body>
-</html>		
+    </div>
+  </body>
+</html>
