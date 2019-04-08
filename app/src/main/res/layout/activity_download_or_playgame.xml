@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="40dp"
-    tools:context="game_player.pratham.com.gameplayer.activities.DownloadOrPlaygame">
+    tools:context="com.pef.non_cog.activities.DownloadOrPlaygame">
 
     <LinearLayout
         android:id="@+id/downloadblock"

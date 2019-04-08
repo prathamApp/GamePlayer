@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/gradient"
     android:orientation="vertical"
-    tools:context="game_player.pratham.com.gameplayer.activities.SplashScreen">
+    tools:context="com.pef.non_cog.activities.SplashScreen">
 
     <LinearLayout
         android:layout_width="match_parent"

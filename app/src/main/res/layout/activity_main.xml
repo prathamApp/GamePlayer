@@ -59,7 +59,7 @@
                     style="@style/textViewStyle_main_A"
                     android:text="@string/villageName" />
 
-                <game_player.pratham.com.gameplayer.customView.CustomSpinner
+                <com.pef.non_cog.customView.CustomSpinner
                     android:id="@+id/villageSpinner"
                     style="@style/spinnerStyle_main_A" />
             </LinearLayout>
@@ -74,7 +74,7 @@
                     style="@style/textViewStyle_main_A"
                     android:text="@string/groupCount" />
 
-                <game_player.pratham.com.gameplayer.customView.CustomSpinner
+                <com.pef.non_cog.customView.CustomSpinner
                     android:id="@+id/groupSpinner"
                     style="@style/spinnerStyle_main_A" />
             </LinearLayout>
